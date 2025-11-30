@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jelle Spijker | Manager Firmware & Cloud Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              medido: {
+                purple: '#380559',
+                peach: '#FFAD7E',
+                'peach-light': '#FFD6C0',
+                gray: '#F9FAFB',
+                // Logo specific petal colors
+                teal: '#00A99D',
+                stone: '#8A959B', 
+                orange: '#F15A24',
+                pink: '#F4B3CE',
+              }
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            },
+            fontSize: {
+              base: ['18px', '28.08px'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #ffffff;
+        color: #380559; /* Medido Purple */
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #ffffff;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #380559;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #5a1e75;
+      }
+      
+      /* Markdown Styles within Chat */
+      .prose p {
+        margin-bottom: 0.5em;
+      }
+      .prose ul {
+        list-style-type: disc;
+        padding-left: 1.2em;
+        margin-bottom: 0.5em;
+      }
+      .prose strong {
+        color: #FFAD7E; /* Medido Peach */
+        font-weight: 700;
+      }
+
+      /* Print Styles */
+      @media print {
+        @page {
+          margin: 1cm;
+          size: A4;
+        }
+        body {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+          background: white;
+          font-size: 12pt;
+        }
+        
+        /* Hide non-essential elements */
+        .no-print, button, .chat-widget {
+          display: none !important;
+        }
+        
+        /* Ensure layout works on paper */
+        .lg\:grid-cols-12 {
+          display: block;
+        }
+        .lg\:col-span-8, .lg\:col-span-4, .lg\:col-span-7, .lg\:col-span-5 {
+          width: 100%;
+        }
+        
+        /* Force expansion of sections */
+        .hidden-print-content {
+          display: block !important;
+          opacity: 1 !important;
+        }
+        
+        /* Adjust spacing for print */
+        main {
+          padding: 0 !important;
+          max-width: none !important;
+        }
+        
+        section {
+          break-inside: avoid;
+          margin-bottom: 2rem;
+        }
+        
+        /* Styling adjustments */
+        a {
+          text-decoration: none;
+          color: #380559;
+        }
+        
+        header {
+          padding-top: 2rem !important;
+          padding-bottom: 2rem !important;
+          background: #FFAD7E !important;
+          color: #380559 !important;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-markdown": "https://esm.sh/react-markdown@9?bundle",
+    "@google/genai": "https://esm.run/@google/genai"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
