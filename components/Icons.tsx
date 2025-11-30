@@ -16,7 +16,8 @@ import {
   Database,
   Code,
   ExternalLink,
-  Rocket
+  Rocket,
+  Network
 } from 'lucide-react';
 
 export const Icons = {
@@ -36,5 +37,6 @@ export const Icons = {
   Database,
   Code,
   Link: ExternalLink,
-  Rocket
+  Rocket,
+  Network
 };

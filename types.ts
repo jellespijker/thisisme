@@ -66,6 +66,12 @@ export interface Project {
   tech?: string[];
 }
 
+export interface ArchitectureInitiative {
+  name: string;
+  description: string;
+  tech: string[];
+}
+
 export interface CVData {
   profile: Profile;
   experience: JobRole[];
@@ -75,4 +81,5 @@ export interface CVData {
   certifications: Certification[];
   volunteer: VolunteerWork[];
   projects: Project[];
+  architecture: ArchitectureInitiative[];
 }

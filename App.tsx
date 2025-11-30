@@ -4,6 +4,7 @@ import Summary from './components/Summary';
 import ExperienceCard from './components/ExperienceCard';
 import SkillsPanel from './components/SkillsPanel';
 import ProjectsPanel from './components/ProjectsPanel';
+import ArchitecturePanel from './components/ArchitecturePanel';
 import SectionHeader from './components/SectionHeader';
 import ChatWidget from './components/ChatWidget';
 import { Icons } from './components/Icons';
@@ -13,12 +14,12 @@ const App: React.FC = () => {
   const [showPreviousExperience, setShowPreviousExperience] = useState(false);
 
   const handlePrintCV = () => {
-    setShowPreviousExperience(true);
-    // Give React a moment to render the hidden content before printing
-    setTimeout(() => {
-      window.print();
-    }, 100);
+    // We do not expand previous experience automatically to keep the print version short (max 3 pages).
+    // If the user wants the full history, they can manually expand it before printing.
+    window.print();
   };
+
+  const architectureCert = cvData.certifications.find(c => c.name.toLowerCase().includes("software architecture"));
 
   return (
     <div className="min-h-screen bg-white text-medido-purple selection:bg-medido-peach selection:text-medido-purple">
@@ -65,6 +66,12 @@ const App: React.FC = () => {
           {/* Sidebar Column - Increased width */}
           <div className="lg:col-span-5 space-y-12">
             <SkillsPanel skills={cvData.skills} />
+            
+            {/* Architecture Section */}
+            <ArchitecturePanel 
+              initiatives={cvData.architecture} 
+              certificate={architectureCert} 
+            />
             
             {/* Projects Section */}
             <ProjectsPanel projects={cvData.projects} />

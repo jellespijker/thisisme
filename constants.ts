@@ -55,7 +55,7 @@ export const cvData: CVData = {
       responsibility: "5 FTE direct reports",
       highlights: [
         { title: "Team Growth", description: "Expanded team from 3 to 5 direct reports. Facilitated development capacity shift from U.S. to Netherlands." },
-        { title: "Cloud Slicer Product Lead", description: "Spearheaded design of [Cloud Slicer](https://support.makerbot.com/s/article/000003132) using WebAssembly (WASM), contributing potential annual savings of €1.5 million." },
+        { title: "Cloud Slicer Product Lead", description: "Spearheaded design of [Cloud Slicer](https://neoprep.staging.ultimaker.com/) using WebAssembly (WASM), contributing potential annual savings of €1.5 million." },
         { title: "Risk Mitigation", description: "Resolved critical legal/technical risks (OpenSSL, Qt libraries) preventing launch delays." },
         { title: "Architecture", description: "Created ARC42 documentation for new AI services and legacy printer connections." }
       ],
@@ -199,7 +199,7 @@ export const cvData: CVData = {
       name: "Cloud Slicer",
       role: "Product Lead",
       description: "Serverless 3D slicing engine running directly in the browser using WebAssembly, eliminating the need for local software installation.",
-      link: "https://support.makerbot.com/s/article/000003132",
+      link: "https://neoprep.staging.ultimaker.com/",
       tech: ["WASM", "ThreeJS", "C++"]
     },
     {
@@ -220,6 +220,23 @@ export const cvData: CVData = {
       role: "Creator (Royal IHC)",
       description: "Automated hardware/software system for particle size analysis using Computer Vision, processing 8,000 lines of C++ code.",
       tech: ["OpenCV", "C++", "Mechatronics"]
+    }
+  ],
+  architecture: [
+    {
+      name: "Cloud Slicer (NeoPrep)",
+      description: "Designed a serverless, browser-based slicing engine using WebAssembly (WASM), eliminating backend GPU dependencies.",
+      tech: ["WASM", "ThreeJS", "React"]
+    },
+    {
+      name: "AI Agent Protocol (MCP)",
+      description: "Implemented Model Context Protocols (MCP) for UltiBot, enabling deterministic tool use and context retrieval for AI agents.",
+      tech: ["MCP", "LLMs", "Neo4j"]
+    },
+    {
+      name: "CuraEngine Modularization",
+      description: "Architected a gRPC-based plugin system to run proprietary strategies alongside the AGPL licensed core, compliant with license requirements.",
+      tech: ["C++20", "gRPC", "Protobuf"]
     }
   ]
 };

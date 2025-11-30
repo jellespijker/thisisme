@@ -73,58 +73,82 @@
       /* Print Styles */
       @media print {
         @page {
-          margin: 1cm;
+          margin: 0.5cm;
           size: A4;
         }
+        
         body {
           print-color-adjust: exact;
           -webkit-print-color-adjust: exact;
           background: white;
-          font-size: 12pt;
+          /* Scale down to fit desktop layout on A4 */
+          min-width: 1024px;
+          width: 1024px;
+          zoom: 0.65; 
         }
         
         /* Hide non-essential elements */
-        .no-print, button, .chat-widget {
+        .no-print, button, .chat-widget, footer {
           display: none !important;
         }
-        
-        /* Ensure layout works on paper */
-        .lg\:grid-cols-12 {
-          display: block;
+
+        /* Layout Overrides */
+        #root > div > main {
+            max-width: none !important;
+            padding: 2rem !important;
+            margin: 0 !important;
         }
-        .lg\:col-span-8, .lg\:col-span-4, .lg\:col-span-7, .lg\:col-span-5 {
-          width: 100%;
-        }
-        
-        /* Force expansion of sections */
-        .hidden-print-content {
-          display: block !important;
-          opacity: 1 !important;
-        }
-        
-        /* Adjust spacing for print */
-        main {
-          padding: 0 !important;
-          max-width: none !important;
-        }
-        
-        section {
-          break-inside: avoid;
-          margin-bottom: 2rem;
-        }
-        
-        /* Styling adjustments */
-        a {
-          text-decoration: none;
-          color: #380559;
-        }
-        
+
         header {
-          padding-top: 2rem !important;
-          padding-bottom: 2rem !important;
-          background: #FFAD7E !important;
+            padding-top: 2rem !important;
+            padding-bottom: 2rem !important;
+        }
+        
+        /* Force 2-Column Grid Layout */
+        .lg\:grid-cols-12 {
+          display: grid !important;
+          grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+          gap: 2rem !important;
+        }
+        
+        .lg\:col-span-7 {
+          grid-column: span 7 / span 7 !important;
+        }
+        
+        .lg\:col-span-5 {
+          grid-column: span 5 / span 5 !important;
+        }
+        
+        /* Adjust Spacing */
+        .space-y-16 > * + * {
+            margin-top: 2rem !important;
+        }
+        .space-y-12 > * + * {
+             margin-top: 2rem !important;
+        }
+        .p-8, .md\:p-12 {
+            padding: 1.5rem !important;
+        }
+        
+        /* Page Break Management */
+        section {
+            break-inside: auto;
+        }
+        
+        /* Prevent breaking inside cards */
+        .rounded-3xl, .rounded-\[40px\], .bg-white, .bg-medido-gray {
+            break-inside: avoid !important;
+        }
+
+        /* Ensure links are readable but not ugly */
+        a {
+          text-decoration: none !important;
           color: #380559 !important;
         }
+        
+        /* Typography Scaling */
+        h1 { font-size: 3rem !important; }
+        p { font-size: 1rem !important; }
       }
     </style>
   <script type="importmap">
