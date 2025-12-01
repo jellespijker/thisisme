@@ -132,32 +132,6 @@ export const cvData: CVData = {
       ]
     }
   ],
-  skills: [
-    {
-      category: "Languages",
-      items: ["Dutch (Native)", "English (Full Professional)"]
-    },
-    {
-      category: "Programming Languages",
-      items: ["C", "C++ (11-23)", "Python", "JavaScript", "TypeScript", "LaTeX", "TikZ", "Bash/Zsh"]
-    },
-    {
-      category: "Cloud & DevOps",
-      items: ["GCP (CloudRun, VertexAI)", "Docker", "GitHub Actions", "Code Signing", "MongoDB"]
-    },
-    {
-      category: "Frontend & Web",
-      items: ["React", "NodeJS", "Vite", "ThreeJS", "WASM"]
-    },
-    {
-      category: "AI & Data",
-      items: ["LangGraphJS", "LangChainJS", "Neo4j", "Gemini / Gems", "NotebookLM"]
-    },
-    {
-      category: "Systems & Embedded",
-      items: ["Linux/Windows/MacOS", "QML + Qt", "Device Tree Overlays", "D-Bus", "Cross-Compiling (ARM/Intel)"]
-    }
-  ],
   education: [
     {
       degree: "Bachelor of Engineering (BEng), Mechanical Engineering",
@@ -188,6 +162,32 @@ export const cvData: CVData = {
     { name: "Certified Professional for Software Architecture", issuer: "iSAQB" },
     { name: "Artificial Intelligence for Robotics", issuer: "Udacity" },
     { name: "Design Patterns in C++", issuer: "Course" }
+  ],
+  skills: [
+    {
+      category: "Languages",
+      items: ["Dutch (Native)", "English (Full Professional)"]
+    },
+    {
+      category: "Programming Languages",
+      items: ["C", "C++ (11-23)", "Python", "JavaScript", "TypeScript", "LaTeX", "TikZ", "Bash/Zsh"]
+    },
+    {
+      category: "Cloud & DevOps",
+      items: ["GCP (CloudRun, VertexAI)", "Docker", "GitHub Actions", "Code Signing", "MongoDB"]
+    },
+    {
+      category: "Frontend & Web",
+      items: ["React", "NodeJS", "Vite", "ThreeJS", "WASM"]
+    },
+    {
+      category: "AI & Data",
+      items: ["LangGraphJS", "LangChainJS", "Neo4j", "Gemini / Gems", "NotebookLM"]
+    },
+    {
+      category: "Systems & Embedded",
+      items: ["Linux/Windows/MacOS", "QML + Qt", "Device Tree Overlays", "D-Bus", "Cross-Compiling (ARM/Intel)"]
+    }
   ],
   volunteer: [
     {

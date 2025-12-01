@@ -19,8 +19,6 @@ const App: React.FC = () => {
     window.print();
   };
 
-  const architectureCert = cvData.certifications.find(c => c.name.toLowerCase().includes("software architecture"));
-
   return (
     <div className="min-h-screen bg-white text-medido-purple selection:bg-medido-peach selection:text-medido-purple">
       <Header profile={cvData.profile} />
@@ -44,16 +42,16 @@ const App: React.FC = () => {
             <div className="break-after-page"></div>
         </div>
         {/* --- END PRINT PAGE 1 --- */}
+        
+        {/* Web Only: Summary (Full Width) */}
+        <div className="print:hidden mb-16">
+           <Summary text={cvData.profile.summary} onPrint={handlePrintCV} />
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
           {/* Main Content Column */}
           <div className="lg:col-span-8 space-y-16">
-            
-            {/* Web Only: Summary (Hidden in print because it's on Page 1) */}
-            <div className="print:hidden">
-               <Summary text={cvData.profile.summary} onPrint={handlePrintCV} />
-            </div>
             
             <section>
               {/* Web Only: Header (Hidden in print because it's on Page 1) */}
@@ -94,21 +92,10 @@ const App: React.FC = () => {
           </div>
 
           {/* Sidebar Column - Starts on Page 2 in Print */}
-          <div className="lg:col-span-4 space-y-12">
+          {/* Added print:space-y-0 to allow grid gap to handle spacing in print */}
+          <div className="lg:col-span-4 space-y-12 print:space-y-0">
             
-            {/* Skills Panel - Default Vertical Stack for Sidebar */}
-            <SkillsPanel skills={cvData.skills} variant="default" />
-            
-            {/* Architecture Section */}
-            <ArchitecturePanel 
-              initiatives={cvData.architecture} 
-              certificate={architectureCert} 
-            />
-            
-            {/* Projects Section */}
-            <ProjectsPanel projects={cvData.projects} />
-
-            {/* Education Section */}
+            {/* 1. Education Section */}
             <div>
               <SectionHeader title="Education" icon={<Icons.Book size={28} />} />
               <div className="bg-medido-gray rounded-3xl p-8 border border-gray-100">
@@ -145,40 +132,50 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Certifications & Volunteering */}
-            <div className="space-y-12">
-               <div>
-                <SectionHeader title="Certifications" icon={<Icons.Award size={28} />} />
-                <div className="bg-white rounded-3xl p-6 border-2 border-medido-purple/10">
-                  <ul className="space-y-6">
-                    {cvData.certifications.map((cert, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
-                        <div className="p-3 bg-medido-peach/20 rounded-xl text-medido-purple">
-                          <Icons.Award size={24} />
-                        </div>
-                        <div>
-                          <div className="text-medido-purple font-bold leading-tight">{cert.name}</div>
-                          <div className="text-medido-purple/60 text-sm mt-1">{cert.issuer}</div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-               </div>
-
-               <div>
-                <SectionHeader title="Volunteering" icon={<Icons.Users size={28} />} />
-                <ul className="space-y-8">
-                  {cvData.volunteer.map((vol, idx) => (
-                    <li key={idx}>
-                       <div className="text-medido-purple font-bold text-lg">{vol.role}</div>
-                       <div className="text-medido-peach font-bold text-base">{vol.organization}</div>
-                       <div className="text-medido-purple/50 text-sm mb-3 font-medium">{vol.period}</div>
-                       <p className="text-medido-purple/80 text-base leading-relaxed">{vol.description}</p>
+            {/* 2. Certifications - Direct child for Print Grid */}
+            <div>
+              <SectionHeader title="Certifications" icon={<Icons.Award size={28} />} />
+              <div className="bg-white rounded-3xl p-6 border-2 border-medido-purple/10">
+                <ul className="space-y-6">
+                  {cvData.certifications.map((cert, idx) => (
+                    <li key={idx} className="flex items-start gap-4">
+                      <div className="p-3 bg-medido-peach/20 rounded-xl text-medido-purple">
+                        <Icons.Award size={24} />
+                      </div>
+                      <div>
+                        <div className="text-medido-purple font-bold leading-tight">{cert.name}</div>
+                        <div className="text-medido-purple/60 text-sm mt-1">{cert.issuer}</div>
+                      </div>
                     </li>
                   ))}
                 </ul>
-               </div>
+              </div>
+            </div>
+            
+            {/* 3. Architecture Section */}
+            <ArchitecturePanel 
+              initiatives={cvData.architecture} 
+            />
+            
+            {/* 4. Projects Section */}
+            <ProjectsPanel projects={cvData.projects} />
+
+            {/* 5. Skills Panel */}
+            <SkillsPanel skills={cvData.skills} variant="default" />
+
+            {/* 6. Volunteering - Direct child for Print Grid */}
+            <div>
+              <SectionHeader title="Volunteering" icon={<Icons.Users size={28} />} />
+              <ul className="space-y-8">
+                {cvData.volunteer.map((vol, idx) => (
+                  <li key={idx}>
+                      <div className="text-medido-purple font-bold text-lg">{vol.role}</div>
+                      <div className="text-medido-peach font-bold text-base">{vol.organization}</div>
+                      <div className="text-medido-purple/50 text-sm mb-3 font-medium">{vol.period}</div>
+                      <p className="text-medido-purple/80 text-base leading-relaxed">{vol.description}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
 
           </div>
