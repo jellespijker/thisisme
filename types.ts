@@ -24,7 +24,9 @@ export interface JobRole {
   period: string;
   location?: string;
   description?: string;
-  highlights: ExperiencePoint[];
+  highlights?: ExperiencePoint[]; // Legacy/Generic highlights
+  leadershipHighlights?: ExperiencePoint[]; // New: Leadership specific
+  engineeringHighlights?: ExperiencePoint[]; // New: Engineering specific
   responsibility?: string;
   techStack?: string[];
   logo?: string;

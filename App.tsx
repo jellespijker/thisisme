@@ -28,8 +28,8 @@ const App: React.FC = () => {
       <main className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
-          {/* Main Content Column - Reduced width slightly to give more room to sidebar */}
-          <div className="lg:col-span-7 space-y-16">
+          {/* Main Content Column - Increased width */}
+          <div className="lg:col-span-8 space-y-16">
             <Summary text={cvData.profile.summary} onPrint={handlePrintCV} />
             
             <section>
@@ -63,8 +63,8 @@ const App: React.FC = () => {
             </section>
           </div>
 
-          {/* Sidebar Column - Increased width */}
-          <div className="lg:col-span-5 space-y-12">
+          {/* Sidebar Column - Reduced width */}
+          <div className="lg:col-span-4 space-y-12">
             <SkillsPanel skills={cvData.skills} />
             
             {/* Architecture Section */}

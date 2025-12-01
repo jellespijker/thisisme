@@ -105,9 +105,11 @@ const ChatWidget: React.FC = () => {
                       : 'bg-white text-medido-purple border border-gray-100 rounded-bl-none'
                   }`}
                 >
-                  <ReactMarkdown className="prose prose-sm max-w-none prose-p:text-inherit prose-headings:text-inherit prose-strong:text-medido-peach prose-ul:text-inherit">
-                    {msg.text}
-                  </ReactMarkdown>
+                  <div className="prose prose-sm max-w-none prose-p:text-inherit prose-headings:text-inherit prose-strong:text-medido-peach prose-ul:text-inherit">
+                    <ReactMarkdown>
+                      {msg.text}
+                    </ReactMarkdown>
+                  </div>
                 </div>
               </div>
             ))}

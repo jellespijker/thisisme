@@ -41,7 +41,7 @@ const Summary: React.FC<SummaryProps> = ({ text, onPrint }) => {
             <div className="absolute inset-0 flex flex-col justify-end p-6">
                 <div className="bg-medido-purple/90 backdrop-blur-md rounded-2xl p-4 text-white border border-white/20">
                     <p className="font-bold text-sm text-medido-peach">Leadership Philosophy</p>
-                    <p className="text-xs mt-1 leading-snug">"Building a community of leaders to bridge the gap between human care and technical innovation."</p>
+                    <p className="text-xs mt-1 leading-snug">"Calm, pragmatic leadership. Building a community of leaders. Should I do this now?"</p>
                 </div>
             </div>
         </div>
