@@ -219,21 +219,21 @@ export const cvData: CVData = {
     {
       name: "UltiMaker Digital Factory",
       role: "Engineering Manager",
-      description: "Cloud-based fleet management platform enabling remote printing, queue management, and analytics for thousands of 3D printers globally.",
+      description: "Cloud-based fleet management platform handling 200k visits/month, enabling remote printing, queue management, and analytics for thousands of 3D printers globally.",
       link: "https://ultimaker.com/software/ultimaker-digital-factory/",
       tech: ["SaaS", "GCP", "React"]
     },
     {
       name: "UltiMaker Cura Cloud",
       role: "Product Lead",
-      description: "Serverless 3D slicing engine running directly in the browser using WebAssembly, eliminating the need for local software installation.",
+      description: "Serverless 3D slicing engine processing 100k slices/month directly in the browser using WebAssembly, eliminating the need for local software installation.",
       link: "https://neoprep.staging.ultimaker.com/",
       tech: ["WASM", "ThreeJS", "C++"]
     },
     {
       name: "UltiMaker Cura",
       role: "Core Developer / Lead",
-      description: "The world's most popular open-source 3D printing software. Modernized the core engine to C++20 and introduced a robust plugin architecture.",
+      description: "The world's most popular open-source 3D printing software with 15 million slices/month. Modernized the core engine to C++20 and introduced a robust plugin architecture.",
       link: "https://github.com/Ultimaker/Cura",
       tech: ["C++20", "Python", "Qt"]
     },
