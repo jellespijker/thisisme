@@ -25,17 +25,15 @@ export const cvData: CVData = {
         { title: "Strategic Role", description: "Promoted to oversee the Firmware department alongside Cloud responsibilities, effectively managing the complete hardware-software loop. Reporting directly to the CTO." },
         { title: "Insourcing & Operational Efficiency", description: "Navigated budget constraints by optimizing for 'doing more with less'. Down-sized external contractors. Transitioned from Scrum to Kanban to improve flow and reorganized cross-functional resources (shifting capacity from Firmware to Digital Factory)." },
         { title: "Team Leadership", description: "Managed 2 SCRUM teams (Digital Factory and Firmware) including Software Architects, DevOps, UX, and Developers." },
-        { title: "Contract Negotiations", description: "Managed contract negotiations for external partners prior to strategic insourcing initiatives." },
         { title: "Knowledge Sharing", description: "Founded 'AI-In-Action', a company-wide initiative empowering employees to improve efficiency using AI." },
         { title: "Compliance (ISO 27001)", description: "Started the ISO 27001 initiative and own the processes for ISO 27001 certification Cloud & Firmware. Establishing security controls and risk assessments." }
       ],
       engineeringHighlights: [
         { title: "Active Technical Contribution", description: "Maintain active hands-on involvement by contributing code and fixing bugs across Firmware, Cloud, and [Digital Factory](https://ultimaker.com/software/ultimaker-digital-factory/)." },
         { title: "AI Translation Agent", description: "Created a CI/CD Translation Agent using GraphRAG to inject cultural and language-specific domain context into automated translations, resulting in €25k annual savings." },
-        { title: "AI & Innovation", description: "Integrated AI agents ('UltiBot') and Neo4j Knowledge Graphs into UltiMaker Cura Cloud. Implemented MCP (Model Context Protocols) for automated decision-making." },
         { title: "Cyber-Physical Alignment", description: "Partnered with Product Management to align firmware roadmaps with cloud capabilities for seamless telemetry." }
       ],
-      techStack: ["Firmware", "Cloud", "AI Agents", "ISO 27001", "Neo4j", "GraphRAG", "Kanban"]
+      techStack: ["Firmware", "Cloud", "AI Agents", "ISO 27001", "Neo4j", "GraphRAG", "Scrum", "Kanban"]
     },
     {
       title: "Manager Cloud & Digital Factory",
@@ -47,9 +45,11 @@ export const cvData: CVData = {
       leadershipHighlights: [
         { title: "Strategic Alignment", description: "Reported directly to the CTO, driving strategic initiatives for Cloud and Digital Factory." },
         { title: "Team Leadership", description: "Managed 1 SCRUM team (Digital Factory) including Software Architects, DevOps, UX, and Developers." },
+        { title: "Contract Negotiations", description: "Managed contract negotiations for external partners prior to strategic insourcing initiatives." },
         { title: "Executive Crisis Resolution", description: "Identified a critical GCP billing conflict (€1M+ risk). Partnered with the DevOps engineer to devise a mitigation strategy, presented the solution to the CEO and CTO, and successfully executed the migration." }
       ],
       engineeringHighlights: [
+        { title: "AI & Innovation", description: "Integrated AI agents ('UltiBot') and Neo4j Knowledge Graphs into UltiMaker Cura Cloud. Implemented MCP (Model Context Protocols) for automated decision-making." },
         { title: "Architecture", description: "Created ARC42 documentation for new AI services and legacy printer connections." },
         { title: "Legacy Modernization", description: "Orchestrated the decoupling of MakerBot and UltiMaker legacy environments, ensuring production stability." }
       ],

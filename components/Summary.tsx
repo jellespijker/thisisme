@@ -8,7 +8,7 @@ interface SummaryProps {
 
 const Summary: React.FC<SummaryProps> = ({ text, onPrint }) => {
   return (
-    <div className="bg-medido-purple text-white rounded-[40px] p-8 md:p-12 shadow-xl relative overflow-hidden">
+    <div className="bg-medido-purple text-white rounded-[40px] p-8 md:p-12 print:p-8 shadow-xl relative overflow-hidden">
       {/* Decorative Circles matching Medido branding style */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-16 -mt-16 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-40 h-40 bg-medido-peach/10 rounded-full -ml-10 -mb-10 pointer-events-none"></div>
@@ -32,7 +32,8 @@ const Summary: React.FC<SummaryProps> = ({ text, onPrint }) => {
         </div>
         
         {/* Visual representation of Team/Leadership in Landscape */}
-        <div className="hidden lg:block lg:col-span-2 h-full min-h-[300px] bg-white/10 rounded-3xl relative overflow-hidden group border border-white/10 no-print">
+        {/* Removed 'no-print' and ensured lg:block works in print */}
+        <div className="hidden lg:block lg:col-span-2 h-full min-h-[300px] bg-white/10 rounded-3xl relative overflow-hidden group border border-white/10">
             <img 
                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
                alt="Engineering Team Leadership" 

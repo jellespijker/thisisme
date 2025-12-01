@@ -10,20 +10,11 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
   return (
     <>
       {/* Hero Section - The "Peach" Block */}
-      <header className="bg-medido-peach text-medido-purple pt-20 pb-24 px-6 lg:px-12 relative overflow-hidden">
+      <header className="bg-medido-peach text-medido-purple py-10 px-6 lg:px-12 relative overflow-hidden">
         
-        {/* Medido Brand Logo positioned absolutely */}
-        <div className="absolute top-8 left-6 lg:left-12 z-20">
-           <img 
-             src="https://medido.com/hs-fs/hubfs/Medido/Medido-logo.png?width=160&height=68&name=Medido-logo.png" 
-             alt="Medido Logo" 
-             className="h-10 w-auto"
-           />
-        </div>
-
         <div className="max-w-screen-2xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
                <div className="inline-block bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-medido-purple text-sm font-bold shadow-sm mb-2">
                  Candidate for Manager Cloud
                </div>
@@ -34,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
                 {profile.title}
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 no-print">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2 no-print">
                 <a href={`mailto:${profile.contact.email}`} className="inline-flex items-center justify-center gap-2 bg-medido-purple text-white px-8 py-4 rounded-full font-bold hover:bg-medido-purple/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                   <Icons.Mail size={20} />
                   Contact Me
@@ -49,7 +40,8 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-6 pt-8 text-medido-purple/80 font-medium text-sm">
+              {/* Reduced padding top here from pt-3 to pt-1 */}
+              <div className="flex flex-wrap gap-4 pt-1 text-medido-purple/80 font-medium text-sm">
                  <div className="flex items-center gap-2">
                     <Icons.Phone size={18} /> {profile.contact.phone}
                  </div>
@@ -60,9 +52,9 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
             </div>
             
             {/* Stats / Impact Visuals - Mimicking Medido Logo */}
-            <div className="hidden lg:flex items-center justify-center no-print relative min-h-[400px]">
+            <div className="hidden lg:flex items-center justify-center relative min-h-[340px] print:min-h-[250px]">
               {/* Container for the logo-mimicking shapes */}
-              <div className="relative w-[340px] h-[340px]">
+              <div className="relative w-[340px] h-[340px] print:scale-75 print:origin-center">
                 
                 {/* Top Petal - Teal - ISO */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-medido-teal rounded-[2.5rem] flex flex-col items-center justify-center text-center p-4 text-white shadow-lg hover:scale-105 transition-transform z-20">

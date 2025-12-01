@@ -26,17 +26,47 @@ const App: React.FC = () => {
       <Header profile={cvData.profile} />
 
       <main className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          
-          {/* Main Content Column - Increased width */}
-          <div className="lg:col-span-8 space-y-16">
+        
+        {/* --- PRINT LAYOUT: PAGE 1 --- */}
+        <div className="hidden print:block mb-4">
+            {/* 1. Executive Profile (Full Width with Image) */}
             <Summary text={cvData.profile.summary} onPrint={handlePrintCV} />
             
+            <div className="mt-6 space-y-4">
+               {/* 2. Professional Experience Header */}
+               <SectionHeader title="Professional Experience" icon={<Icons.Briefcase size={28} />} />
+               
+               {/* 3. First Job (Full Width) */}
+               <ExperienceCard job={cvData.experience[0]} isLatest={true} />
+            </div>
+
+            {/* Force Page Break after Page 1 content */}
+            <div className="break-after-page"></div>
+        </div>
+        {/* --- END PRINT PAGE 1 --- */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* Main Content Column */}
+          <div className="lg:col-span-8 space-y-16">
+            
+            {/* Web Only: Summary (Hidden in print because it's on Page 1) */}
+            <div className="print:hidden">
+               <Summary text={cvData.profile.summary} onPrint={handlePrintCV} />
+            </div>
+            
             <section>
-              <SectionHeader title="Professional Experience" icon={<Icons.Briefcase size={28} />} />
+              {/* Web Only: Header (Hidden in print because it's on Page 1) */}
+              <div className="print:hidden">
+                <SectionHeader title="Professional Experience" icon={<Icons.Briefcase size={28} />} />
+              </div>
+
               <div className="space-y-2">
                 {cvData.experience.map((job, index) => (
-                  <ExperienceCard key={index} job={job} isLatest={index === 0} />
+                  // For Print: Skip the first job because it is already rendered on Page 1
+                  <div key={index} className={index === 0 ? 'print:hidden' : ''}>
+                    <ExperienceCard job={job} isLatest={index === 0} />
+                  </div>
                 ))}
               </div>
             </section>
@@ -63,9 +93,11 @@ const App: React.FC = () => {
             </section>
           </div>
 
-          {/* Sidebar Column - Reduced width */}
+          {/* Sidebar Column - Starts on Page 2 in Print */}
           <div className="lg:col-span-4 space-y-12">
-            <SkillsPanel skills={cvData.skills} />
+            
+            {/* Skills Panel - Default Vertical Stack for Sidebar */}
+            <SkillsPanel skills={cvData.skills} variant="default" />
             
             {/* Architecture Section */}
             <ArchitecturePanel 

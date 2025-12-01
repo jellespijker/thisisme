@@ -73,7 +73,8 @@
       /* Print Styles */
       @media print {
         @page {
-          margin: 0.5cm;
+          /* Remove default margins to control them via padding for symmetry */
+          margin: 0mm;
           size: A4;
         }
         
@@ -81,10 +82,14 @@
           print-color-adjust: exact;
           -webkit-print-color-adjust: exact;
           background: white;
-          /* Scale down to fit desktop layout on A4 */
-          min-width: 1024px;
-          width: 1024px;
-          zoom: 0.65; 
+          margin: 0;
+          padding: 0;
+          /* 
+             A4 width is ~794px at 96DPI. 
+             Zoom 0.7 to ensure all of Page 1 fits.
+          */
+          width: 100% !important;
+          zoom: 0.70; 
         }
         
         /* Hide non-essential elements */
@@ -94,17 +99,24 @@
 
         /* Layout Overrides */
         #root > div > main {
-            max-width: none !important;
-            padding: 2rem !important;
+            /* Symmetrical Padding: 3rem on left and right */
+            padding: 1.5rem 3rem 3rem 3rem !important;
             margin: 0 !important;
+            max-width: none !important;
+            width: 100% !important;
         }
 
         header {
-            padding-top: 2rem !important;
+            /* Symmetrical Padding matching Main */
+            padding-left: 3rem !important;
+            padding-right: 3rem !important;
+            
+            /* Reduced height for print */
+            padding-top: 2rem !important; 
             padding-bottom: 2rem !important;
         }
         
-        /* Force 2-Column Grid Layout */
+        /* Ensure the grid system respects the full width */
         .lg\:grid-cols-12 {
           display: grid !important;
           grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
@@ -119,20 +131,25 @@
           grid-column: span 4 / span 4 !important;
         }
         
-        /* Adjust Spacing */
+        /* Spacing Adjustments for Print Density */
         .space-y-16 > * + * {
-            margin-top: 2rem !important;
+            margin-top: 2.5rem !important;
         }
         .space-y-12 > * + * {
              margin-top: 2rem !important;
-        }
-        .p-8, .md\:p-12 {
-            padding: 1.5rem !important;
         }
         
         /* Page Break Management */
         section {
             break-inside: auto;
+        }
+
+        .break-after-page {
+            page-break-after: always;
+            break-after: page;
+            height: 0;
+            display: block;
+            visibility: hidden;
         }
         
         /* Prevent breaking inside cards */
@@ -140,15 +157,11 @@
             break-inside: avoid !important;
         }
 
-        /* Ensure links are readable but not ugly */
+        /* Clean up links */
         a {
           text-decoration: none !important;
           color: #380559 !important;
         }
-        
-        /* Typography Scaling */
-        h1 { font-size: 3rem !important; }
-        p { font-size: 1rem !important; }
       }
     </style>
   <script type="importmap">
