@@ -17,7 +17,11 @@ import {
   Code,
   ExternalLink,
   Rocket,
-  Network
+  Network,
+  Maximize2,
+  Minimize2,
+  Sparkles,
+  X
 } from 'lucide-react';
 
 export const Icons = {
@@ -38,5 +42,9 @@ export const Icons = {
   Code,
   Link: ExternalLink,
   Rocket,
-  Network
+  Network,
+  Maximize: Maximize2,
+  Minimize: Minimize2,
+  Sparkles,
+  Close: X
 };
