@@ -21,6 +21,9 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
             
             {/* Left Column: Name & Metadata */}
             <div className="lg:col-span-5 space-y-5">
+              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none">
+                {profile.name}
+              </h1>
               <div className="flex flex-wrap gap-2">
                 <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
                   Software Development Manager
@@ -32,12 +35,6 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                   Software Architect
                 </div>
               </div>
-              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none">
-                {profile.name}
-              </h1>
-              <p className="text-xl md:text-2xl font-bold leading-tight opacity-90 text-medido-purple">
-                {profile.title}
-              </p>
               
               <div className="flex flex-wrap gap-4 text-medido-purple/80 font-semibold text-sm">
                 <div className="flex items-center gap-2">
@@ -59,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                   href="https://jellespijker.github.io/thisisme/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden print:inline-flex items-center gap-2 bg-medido-purple text-white px-6 py-3 rounded-full font-bold border border-medido-purple/10 shadow-sm"
+                  className="hidden print:inline-flex items-center gap-2 bg-white print:bg-white text-medido-purple print:text-medido-purple px-6 py-3 rounded-full font-bold border border-medido-purple/20 print:border-medido-purple/30 shadow-sm"
                 >
                   <Icons.Sparkles size={16} /> Interactive CV
                 </a>
