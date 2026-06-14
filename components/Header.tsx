@@ -21,8 +21,16 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
             
             {/* Left Column: Name & Metadata */}
             <div className="lg:col-span-5 space-y-5">
-              <div className="inline-block bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
-                Engineering Manager | Software Architect
+              <div className="flex flex-wrap gap-2">
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                  Software Development Manager
+                </div>
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                  Senior Software Lead
+                </div>
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                  Software Architect
+                </div>
               </div>
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none">
                 {profile.name}
