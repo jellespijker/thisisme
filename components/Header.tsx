@@ -48,6 +48,14 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                   <Icons.Briefcase size={16} /> Download CV
                 </button>
                 <a 
+                  href="https://jellespijker.github.io/thisisme/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden print:inline-flex items-center gap-2 bg-medido-purple text-white px-6 py-3 rounded-full font-bold border border-medido-purple/10 shadow-sm"
+                >
+                  <Icons.Sparkles size={16} /> Interactive CV
+                </a>
+                <a 
                   href={`mailto:${profile.contact.email}`} 
                   className="inline-flex items-center gap-2 bg-white hover:bg-white/90 text-medido-purple px-6 py-3 rounded-full font-bold transition-all shadow-sm hover:-translate-y-0.5 border border-medido-purple/10"
                 >
