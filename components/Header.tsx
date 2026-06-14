@@ -25,13 +25,13 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                 {profile.name}
               </h1>
               <div className="flex flex-wrap gap-2">
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
                   Software Development Manager
                 </div>
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
                   Senior Software Lead
                 </div>
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full text-medido-purple text-xs font-black shadow-sm tracking-wide">
+                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
                   Software Architect
                 </div>
               </div>
