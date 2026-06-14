@@ -24,6 +24,18 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none">
                 {profile.name}
               </h1>
+              <div className="flex flex-wrap gap-4 text-medido-purple/80 font-semibold text-sm">
+                <div className="flex items-center gap-2">
+                  <Icons.Phone size={16} /> {profile.contact.phone}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icons.MapPin size={16} /> {profile.contact.location}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icons.Mail size={16} /> spijker.jelle@gmail.com
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-2">
                 <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
                   Software Development Manager
@@ -33,15 +45,6 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                 </div>
                 <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
                   Software Architect
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-4 text-medido-purple/80 font-semibold text-sm">
-                <div className="flex items-center gap-2">
-                  <Icons.Phone size={16} /> {profile.contact.phone}
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icons.MapPin size={16} /> {profile.contact.location}
                 </div>
               </div>
 
