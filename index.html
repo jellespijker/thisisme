@@ -55,6 +55,12 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #5a1e75;
       }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
       
       /* Markdown Styles within Chat */
       .prose p {
@@ -73,82 +79,186 @@
       /* Print Styles */
       @media print {
         @page {
-          /* Remove default margins to control them via padding for symmetry */
-          margin: 0mm;
           size: A4;
+          margin: 12mm 15mm 15mm 15mm; /* Balanced margins to prevent header/footer overlap */
         }
         
         body {
           print-color-adjust: exact;
           -webkit-print-color-adjust: exact;
-          background: white;
+          background: white !important;
           margin: 0;
           padding: 0;
-          /* 
-             A4 width is ~794px at 96DPI. 
-             Zoom 0.7 to ensure all of Page 1 fits.
-          */
           width: 100% !important;
-          zoom: 0.70; 
+          zoom: 0.78; /* Excellent scaling factor to keep the screen design identical but perfectly dense */
         }
         
         /* Hide non-essential elements */
-        .no-print, button, .chat-widget, footer {
+        .no-print, button, .chat-widget, footer, #__next-links, header:not(.cv-header) {
           display: none !important;
         }
 
-        /* Layout Overrides */
+        /* Layout Overrides to match the webpage itself */
         #root > div > main {
-            /* Symmetrical Padding: 3rem on left and right */
-            padding: 1.5rem 3rem 3rem 3rem !important;
+            padding: 0 !important;
             margin: 0 !important;
             max-width: none !important;
             width: 100% !important;
         }
 
-        header {
-            /* Symmetrical Padding matching Main */
-            padding-left: 3rem !important;
-            padding-right: 3rem !important;
-            
-            /* Reduced height for print */
-            padding-top: 2rem !important; 
-            padding-bottom: 2rem !important;
+        /* Force grid and column layouts on print to keep the exact desktop online experience */
+        .grid:not(.print\:hidden):not(.recommendations-grid), .hidden.md\:grid:not(.print\:hidden):not(.recommendations-grid) {
+          display: grid !important;
         }
-        
-        /* Flatten Layout for Print */
-        /* Make the main layout stack vertically */
-        .lg\:grid-cols-12 {
+        .md\:hidden:not(.print\:block) {
+          display: none !important;
+        }
+        .print\:block {
           display: block !important;
         }
-        
-        /* Experience Column takes full width */
-        .lg\:col-span-8 {
-          width: 100% !important;
-          margin-bottom: 3rem !important;
+        .md\:grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         }
-        
-        /* Sidebar Column becomes a 3-column Grid */
-        .lg\:col-span-4 {
-          width: 100% !important;
-          display: grid !important;
-          grid-template-columns: repeat(3, 1fr) !important;
-          gap: 2rem !important;
+        .lg\:grid-cols-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
         }
 
-        /* Reset margins applied by space-y-* in sidebar */
-        .lg\:col-span-4 > * {
-          margin-top: 0 !important;
+        header.cv-header {
+            margin-top: 0 !important;
+            margin-bottom: 1rem !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+            border-radius: 1.25rem !important; /* Keep rounded corners on print */
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+        }
+
+        /* Tighten section headers bottom spacing in print */
+        .flex.items-center.gap-4.mb-8 {
+          margin-bottom: 1rem !important;
         }
         
+        /* Stack header vertically as 1 column on print with compact spacing */
+        .header-grid {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 0.75rem !important;
+          width: 100% !important;
+        }
+        .header-grid > .lg\:col-span-5,
+        .header-grid > .lg\:col-span-7 {
+          width: 100% !important;
+          max-width: 100% !important;
+          flex: 1 1 100% !important;
+        }
+        .header-grid .space-y-5 > * + * {
+          margin-top: 0.35rem !important; /* Extremely compact list spacing on print */
+        }
+        .header-grid h1 {
+          margin-bottom: 0.25rem !important;
+        }
+        .header-grid .bg-white\/40 {
+          padding: 0.75rem 1rem !important; /* Very compact padding on print summary card */
+        }
+
+        /* Proportional print text size scaling */
+        h1, .text-4xl, .text-5xl { font-size: 28px !important; }
+        h2, .text-2xl, .text-3xl { font-size: 24px !important; } /* Bigger section titles */
+        h3, .text-xl { font-size: 14px !important; } /* Bigger role headings */
+        h4, .text-lg { font-size: 11px !important; }
+        
+        p, li, span, div, a {
+          orphans: 3;
+          widows: 3;
+        }
+
+        /* Tighter padding and margins for print density */
+        .p-6, .p-8, .p-12, .p-16 {
+          padding: 1rem !important;
+        }
+        .gap-6, .gap-8, .gap-12, .gap-16 {
+          gap: 1rem !important;
+        }
+        .mt-8, .mt-12, .mt-16, .mt-20 {
+          margin-top: 1rem !important;
+        }
+        .mb-16, .mb-20 {
+          margin-bottom: 1.25rem !important;
+        }
+
         /* Spacing Adjustments for Print Density */
+        .space-y-20 > * + * {
+             margin-top: 1.5rem !important;
+        }
         .space-y-16 > * + * {
-            margin-top: 2.5rem !important;
+            margin-top: 1.25rem !important;
         }
         .space-y-12 > * + * {
-             margin-top: 2rem !important;
+             margin-top: 1rem !important;
         }
         
+        /* Preventing Orphaned Subheadings & Elements */
+        h1, h2, h3, h4, 
+        .section-title,
+        .experience-item-header {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+
+        /* Allow timeline row flex layouts to break gracefully if there is enough content on both sides */
+        .experience-item,
+        .education-item {
+          break-inside: auto !important;
+          page-break-inside: auto !important;
+          display: flex !important; /* Preserves vertical vertical alignment of icons and content */
+          margin-bottom: 1rem !important;
+        }
+        .experience-item *,
+        .education-item * {
+          orphans: 4 !important;
+          widows: 4 !important;
+        }
+
+        /* Prevent other card elements from breaking across pages, but keep original layouts */
+        .project-card,
+        .recommendation-card,
+        .volunteering-item {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+          margin-bottom: 1rem !important;
+        }
+
+        /* Use Flexbox with wrapping on print for recommendations to bypass Chromium grid page-breaking bugs */
+        .recommendations-grid {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: wrap !important;
+          gap: 1.5rem !important;
+        }
+        .recommendations-grid > .recommendation-card:first-child {
+          flex: 1 1 100% !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        .recommendations-grid > .recommendation-card:not(:first-child) {
+          flex: 1 1 calc(50% - 0.75rem) !important;
+          max-width: calc(50% - 0.75rem) !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+
+        /* Prevent inline flex/grid tag rows from breaking separately */
+        .tech-tags-container {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+
         /* Page Break Management */
         section {
             break-inside: auto;
@@ -161,10 +271,22 @@
             display: block;
             visibility: hidden;
         }
+
+        .force-page-break {
+          break-before: page !important;
+          page-break-before: always !important;
+        }
         
-        /* Prevent breaking inside cards */
-        .rounded-3xl, .rounded-\[40px\], .bg-white, .bg-medido-gray {
+        /* Allow timeline cards (.rounded-2xl) to break gracefully across pages if necessary */
+        .rounded-2xl {
+            break-inside: auto !important;
+            page-break-inside: auto !important;
+        }
+
+        /* Prevent breaking inside sidebar boxes/sections */
+        .rounded-3xl, .rounded-\[40px\], section > div.bg-white {
             break-inside: avoid !important;
+            page-break-inside: avoid !important;
         }
 
         /* Clean up links */
@@ -189,5 +311,6 @@
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

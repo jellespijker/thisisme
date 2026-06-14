@@ -10,10 +10,7 @@ interface SkillsPanelProps {
 }
 
 const SkillsPanel: React.FC<SkillsPanelProps> = ({ skills, variant = 'default' }) => {
-  // Use a grid for the full width print variant to save vertical space
-  const containerClass = variant === 'full' 
-    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" 
-    : "space-y-6";
+  const containerClass = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
 
   return (
     <div>

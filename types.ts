@@ -46,11 +46,16 @@ export interface Education {
   logo?: string;
   website?: string;
   thesisLink?: string;
+  techStack?: string[];
 }
 
 export interface Certification {
   name: string;
   issuer?: string;
+  date?: string;
+  credentialId?: string;
+  details?: string[];
+  techStack?: string[];
 }
 
 export interface VolunteerWork {
@@ -74,6 +79,17 @@ export interface ArchitectureInitiative {
   tech: string[];
 }
 
+export interface Recommendation {
+  name: string;
+  title: string;
+  company?: string;
+  date: string;
+  relationship: string;
+  text: string;
+  avatar?: string;
+  linkedin?: string;
+}
+
 export interface CVData {
   profile: Profile;
   experience: JobRole[];
@@ -84,4 +100,5 @@ export interface CVData {
   volunteer: VolunteerWork[];
   projects: Project[];
   architecture: ArchitectureInitiative[];
+  recommendations: Recommendation[];
 }

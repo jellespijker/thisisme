@@ -21,7 +21,7 @@ const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Hello! I'm Jelle's AI Assistant. Ask me how his experience at UltiMaker makes him the perfect fit for the Cloud Manager role at Medido." }
+    { role: 'model', text: "Hello! I'm Jelle's AI Assistant. Ask me how his unique journey from the factory floor to software management makes him the perfect fit for Software Development Manager, Senior Software Lead, or Software Architect roles." }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);

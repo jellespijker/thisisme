@@ -12,9 +12,9 @@ const ProjectsPanel: React.FC<ProjectsPanelProps> = ({ projects }) => {
     <div>
       <SectionHeader title="Products & Projects" icon={<Icons.Rocket size={28} />} />
       
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all group">
+          <div key={idx} className="project-card bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all group">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-bold text-medido-purple text-lg leading-tight group-hover:text-medido-peach transition-colors">
                 {project.link ? (
@@ -36,7 +36,7 @@ const ProjectsPanel: React.FC<ProjectsPanelProps> = ({ projects }) => {
             </p>
             
             {project.tech && (
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="tech-tags-container flex flex-wrap gap-2 mt-auto">
                 {project.tech.map((tag, tIdx) => (
                   <span key={tIdx} className="px-2.5 py-1 text-xs font-semibold rounded-md bg-medido-gray text-medido-purple/70">
                     {tag}
