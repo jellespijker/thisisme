@@ -3,8 +3,8 @@ import { CVData } from './types';
 export const cvData: CVData = {
   profile: {
     name: "Jelle Spijker",
-    title: "Software Development Manager | Senior Software Lead | Software Architect",
-    summary: "High-impact, player-coach Engineering Manager with a proven record of scaling cross-functional teams, executing high-value strategic initiatives, and pioneering generative AI integrations. Expert in aligning deep technical domains—bridging Modern C++, Embedded Firmware, Cloud/SaaS, and Agentic workflows—to solve mission-critical corporate challenges. Notable achievements include co-authoring WebAssembly-compiled engines saving €1.5M+ in annual cloud infrastructure, resolving €1M+ cloud billing risks, and navigating complex corporate restructurings to maintain 100% of product portfolio continuity under a highly supportive, coaching-centric team culture.",
+    title: "Senior C++ Software Engineer | Tech Lead & Architect | Autonomous Maritime Specialist",
+    summary: "High-impact, player-coach Senior Technical Lead, Architect, and Software Development Manager with 10+ years of experience independently developing technical software, real-time embedded systems, and maritime robotics. Deep domain expertise in the dredging and maritime sectors—pioneering sensor fusion (Unscented Kalman Filters), autonomous path planning (CPP), and multi-board SBC architectures. Proven record of co-authoring high-performance WebAssembly engines saving €1.5M+ in annual cloud infrastructure, engineering custom C++ geometry visualizers, and implementing advanced image processing (FFT, Computer Vision) for sub-millimeter soil analysis. Passionate about object-oriented design (iSAQB® certified), modern C++ (11-23), and robust Linux applications in high-pressure, mission-critical environments.",
     contact: {
       location: "Tiel, Gelderland, Netherlands",
       phone: "+31 6 4327 2644",
@@ -73,13 +73,15 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Geldermalsen, Netherlands",
       period: "April 2020 – March 2025",
-      responsibility: "Served as a core developer for UltiMaker Cura, driving 15 million monthly 3D slices through heavy-duty system algorithms and native optimizations.",
+      responsibility: "Served as a core developer for UltiMaker Cura, driving 15 million monthly 3D slices through heavy-duty system algorithms, data structures, and mathematical optimizations under high pressure.",
       engineeringHighlights: [
-        { title: "C++20 Modernization", description: "Modernized the core engine from C++14 to C++20, architecting a decoupled gRPC-based plugin system." },
-        { title: "WASM Slicing", description: "Pioneered in-browser 3D slicing by compiling heavy C++ engines to WebAssembly, matching native desktop performance." },
-        { title: "Developer Experience (DX)", description: "Cut onboarding from 1 day to 15 minutes and saved €36k/year by automating build systems with Conan/CI and engineering custom VTU geometry debuggers." }
+        { title: "C++20 Engine Modernization", description: "Modernized the core slicing engine (CuraEngine) from C++14 to C++20/23, introducing ranges, concepts, template metaprogramming, and architecting a decoupled gRPC/Protobuf-based plugin system to run proprietary slicing strategies alongside the AGPL core." },
+        { title: "Cloud Slicing (WASM)", description: "Pioneered browser-based 3D slicing by compiling the core C++ slicing algorithms to WebAssembly, matching native desktop performance and 3D visualization requirements." },
+        { title: "ParaView Visual Debugger", description: "Developed the custom C++20 'scripta' visual debugger utilizing CRTP and ranges to serialize internal geometric stages as VTU files, enabling developers and engineers to visualize spatial and geometry edge cases in ParaView." },
+        { title: "CAD Interoperability & Security", description: "Integrated Dassault Systèmes Spatial CGM SDK (UMSpatial) for enterprise CAD file parsing and implemented RSA-based licensing security schemes." },
+        { title: "Operational Excellence", description: "Revamped the entire build system using Conan and GitHub Actions, slashing developer setup from 1 day to 15 minutes and reducing annual infrastructure overhead by €36k/year." }
       ],
-      techStack: ["C++20", "Python", "WebAssembly", "gRPC", "Conan", "GitHub Actions", "Docker", "Qt"]
+      techStack: ["C++20", "C++23", "Python", "WebAssembly", "gRPC", "Protobuf", "Conan", "GitHub Actions", "Docker", "Spatial CGM SDK", "Qt", "Linux"]
     },
     {
       title: "Mechatronic Engineer R&D",
@@ -87,39 +89,73 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Geldermalsen, Netherlands",
       period: "May 2019 – April 2020",
+      responsibility: "Responsible for research, mathematical modeling, and software tool development to analyze extrusion flow and thermodynamics in additive manufacturing.",
       engineeringHighlights: [
-        { title: "Computer Vision", description: "Developed custom Particle Image Velocimetry (PIV) computer vision algorithms in C++ and OpenCV to optimize FDM extrusion accuracy." },
-        { title: "FLIR Thermography", description: "Created thermographic analysis software in Python to inspect printer hotends, enhancing thermal safety margins." }
+        { title: "Flow Computer Vision (PIV)", description: "Developed high-speed Particle Image Velocimetry (PIV) computer vision algorithms and physical test setups in C++ and OpenCV to analyze and visualize fluid extrusion flow in real time." },
+        { title: "FLIR Thermal Analysis", description: "Created real-time thermographic analysis algorithms in Python to inspect hotend heat distribution and fluid boundaries, validating safety and processing margins." },
+        { title: "Mathematical Modeling", description: "Created physical and thermal extrusion flow models in OpenModelica and Python to mathematically predict fluid process parameters and optimize deposition geometry." }
       ],
-      techStack: ["C++", "Python", "OpenCV", "OpenModelica", "Thermography", "Mechatronics"]
+      techStack: ["C++", "Python", "OpenCV", "OpenModelica", "Thermography", "Mechatronics", "Mathematical Modeling", "Data Visualization", "Linux"]
     }
   ],
   previousExperience: [
     {
       title: "Research and Development Engineer",
-      company: "Royal IHC (IHC Medusa & IHC MTI)",
+      company: "Royal IHC (IHC Medusa)",
       website: "https://www.royalihc.com/",
-      location: "Delft & Rotterdam, Netherlands",
-      period: "April 2016 – April 2019",
+      location: "Rotterdam, Netherlands",
+      period: "September 2017 – April 2019",
+      responsibility: "Led engineering initiatives in a newly formed Royal IHC business unit specializing in the processing and handling of geopolymers.",
       engineeringHighlights: [
-        { title: "Industrial R&D", description: "Designed flash-calcination systems and mobile processing plants using high-precision CAD modeling." },
-        { title: "AUV Autonomy", description: "Authored a cross-platform C++ control framework for autonomous underwater vehicles deployed on real-time embedded Linux (RTOS)." },
-        { title: "Soil Machine Vision", description: "Engineered an automated soil microscope powered by an 8,000-line C++ CV engine, applying Fast Fourier Transforms and neural networks." },
-        { title: "Git Standards & DX", description: "Deployed local secure GitLab instances to transition R&D engineering teams into Git version control." }
+        { title: "Industrial Oven Design", description: "Designed and developed an automated flash-calcination kiln for kaolin clay particles, integrating thermal sensors and control loops." },
+        { title: "Processing Plant Engineering", description: "Designed and developed an industrial mobile geopolymer processing plant, coordinating mechanical routing and PLC integrations." }
       ],
-      techStack: ["C++", "Python", "Siemens NX", "OpenCV", "Embedded Linux", "RTOS", "GitLab"]
+      techStack: ["Mechanical Design", "PLC Integration", "Kaolin Flash-Calcination", "Process Engineering", "Thermal Controls"]
+    },
+    {
+      title: "Research and Development Engineer",
+      company: "Royal IHC (IHC MTI)",
+      website: "https://www.royalihc.com/",
+      location: "Delft, Netherlands",
+      period: "April 2016 – September 2017",
+      responsibility: "Conducted core software development, robotics, and hardware-software research within Royal IHC's central R&D institute.",
+      engineeringHighlights: [
+        { title: "Soil Machine Vision Microscope", description: "Independently designed and developed an automated soil analysis microscope backed by an 8,000-line C++ codebase. Implemented advanced image processing (Fast Fourier Transforms, OpenCV) and neural network algorithms (ANN, GA) to classify sand sample shape and grain angularity." },
+        { title: "AUV Autonomy Framework", description: "Authored a real-time C++ control framework for rapid prototyping and deployment of autonomous underwater vehicles (AUVs) on embedded Linux and RTOS." },
+        { title: "Scientific Python Library", description: "Collaborated to create 'MTIpython', an internal Python library for advanced engineering calculations, unit-safe physical computations, and LaTeX-generated reports." },
+        { title: "Test Controller Design", description: "Designed and implemented a real-time C++ test controller and data acquisition script for a slurry-based geopolymer test plant." },
+        { title: "Collaboration Standards", description: "Set up and administered the first local secure GitLab server for the R&D department, establishing modern Git version control, branch rules, and peer reviews." }
+      ],
+      techStack: ["C++", "Python", "OpenCV", "Embedded Linux", "RTOS", "Neural Networks (ANN)", "Fast Fourier Transforms (FFT)", "GitLab", "Siemens NX CAD", "Mathematical Modeling"]
+    },
+    {
+      title: "Engineer (Systems & Piping)",
+      company: "Royal IHC",
+      website: "https://www.royalihc.com/",
+      location: "Kinderdijk, Netherlands",
+      period: "April 2013 – March 2016",
+      responsibility: "Responsible for mechanical design, P&ID design, and system-level engineering for trailing suction hopper dredgers (TSHD), cutter suction dredgers (CSD), and specialized vessels.",
+      engineeringHighlights: [
+        { title: "Maritime Piping & LNG P&ID", description: "Designed complex Piping & Instrumentation Diagrams (P&IDs) for LNG (Liquefied Natural Gas), jetwater, bilge, and ballast systems on seagoing vessels adhering to strict Bureau Veritas, Lloyd's Register, and CCS classification societies." },
+        { title: "Boskalis 'SIDUS' CSD", description: "Executed detailed mechanical engineering and pipeline routing of the thermal oil heating systems for the 23,684kW Boskalis Sidus Cutter Suction Dredger, one of the world's largest." },
+        { title: "CFD Simulation", description: "Designed complex sea-water filtration installations and performed intensive Computational Fluid Dynamics (CFD) simulations in Siemens NX to optimize performance and flow mechanics." },
+        { title: "Deme 'Minerva' & 'Scheldt River'", description: "Coordinated P&ID design for the first low-emission dual-fuel LNG dredging vessels in Deme's fleet." },
+        { title: "Standardization", description: "Collaborated to formulate the shipyard-wide Valve, Instrument and Piping guide (VIP) implemented across multiple global IHC shipyards." }
+      ],
+      techStack: ["Piping Design", "P&ID", "CFD Simulation", "Siemens NX", "Bureau Veritas", "LNG Systems", "Dredging Equipment", "Standardization"]
     },
     {
       title: "Engineer (Mechanical & Piping)",
       company: "Royal IHC & IHC Merwede (Solyne BV)",
       website: "https://www.royalihc.com/",
-      location: "Kinderdijk, Netherlands",
-      period: "April 2013 – March 2016",
+      location: "The Randstad, Netherlands",
+      period: "April 2013 – March 2014",
+      responsibility: "Contract engineer for IHC Merwede Dredging executing detailed engineering for heavy dredging equipment.",
       engineeringHighlights: [
-        { title: "Piping & Instrumentation", description: "Designed P&IDs for LNG and maritime ballast systems conforming to Bureau Veritas and Lloyd's registers." },
-        { title: "CFD Simulation", description: "Performed advanced Computational Fluid Dynamics modeling in CAD to maximize seawater filtration efficiency." }
+        { title: "Mechanical Layouts", description: "Engineered high-load mechanical installations and routed pipelines for shipboard installations." },
+        { title: "Preliminary Layouts", description: "Created shipyard preliminary layouts and general arrangement plans for vessel construction." }
       ],
-      techStack: ["Piping Design", "P&ID", "CFD Simulation", "Siemens NX", "Bureau Veritas"]
+      techStack: ["Piping Design", "Mechanical Engineering", "P&ID", "Shipyard Layouts"]
     },
     {
       title: "Die Designer",
@@ -171,12 +207,12 @@ export const cvData: CVData = {
       year: "2011 – 2020",
       details: [
         "Academic Standard: Grade: 8 / 10. Completed advanced engineering coursework in Statics, Dynamics, Thermodynamics, Fluid Dynamics, Electrical Engineering, Systems Modeling, and CAD Design.",
-        "Thesis Project: Engineered \"ohCaptain\", a modular C++ autonomous controller framework for distributed BeagleBone/Raspberry Pi clusters using an Actor-Model design pattern.",
-        "Robotic Navigation & Sensor Fusion: Formulated and coded an Unscented Kalman Filter (UKF) to fuse high-frequency IMU and pressure sensors for accurate localization in GPS-deprived environments.",
-        "Path Planning & Simulation: Implemented Coverage Path Planning (CPP) algorithms and PID feedback loops, validating system dynamics via Project Chrono multi-body physics simulations."
+        "Thesis Project: Engineered \"ohCaptain\", an open-source autonomous maritime controller framework designed for unmanned vessels and dredging operations (such as Archimedes-driven dredging crawlers) running on Single-Board Computer clusters using C++.",
+        "Robotic Navigation & Sensor Fusion: Programmed and validated an Unscented Kalman Filter (UKF) to fuse high-frequency IMU and pressure sensors for accurate robot localization under GPS-deprived environments.",
+        "Path Planning & Control: Coded Coverage Path Planning (CPP) algorithms and real-time PID feedback controllers, verifying structural dynamics through Project Chrono multi-body physics simulations."
       ],
       thesisLink: "https://github.com/jellespijker/HAN-thesis/blob/master/report.pdf",
-      techStack: ["C++", "Python", "Unscented Kalman Filter (UKF)", "Coverage Path Planning (CPP)", "Sensor Fusion", "BeagleBone Black", "Raspberry Pi", "PID Control", "Multibody Physics", "MATLAB", "CAD Design (NX)", "PLC Programming", "FEM/Motion", "Thermodynamics", "Fluid Dynamics", "IoT"]
+      techStack: ["C++", "Python", "Unscented Kalman Filter (UKF)", "Coverage Path Planning (CPP)", "Sensor Fusion", "BeagleBone Black", "Raspberry Pi", "PID Control", "Multibody Physics", "MATLAB", "CAD Design (NX)", "PLC Programming", "FEM/Motion", "Thermodynamics", "Fluid Dynamics", "IoT", "Maritime Automation"]
     },
     {
       degree: "Bachelor of Engineering (BEng), Embedded Vision Design (Minor)",
@@ -353,11 +389,31 @@ export const cvData: CVData = {
       tech: ["Neo4j", "NodeJS", "WebAssembly", "Blackboard Pattern", "AI Agents", "React"]
     },
     {
-      name: "UltiMaker Digital Factory",
-      role: "Engineering Manager",
-      description: "Built the cloud fleet-management platform handling 200k visits/month, enabling secure remote printing, cloud queue scheduling, and telemetry analytics for thousands of 3D printers.",
-      link: "https://ultimaker.com/software/ultimaker-digital-factory/",
-      tech: ["SaaS", "GCP", "React"]
+      name: "scripta - Visual Debugger for CuraEngine",
+      role: "Creator",
+      description: "A C++20 visual debugger and telemetry tool that serializes complex 3D toolpath geometries and algorithms into ParaView VTU files. Built using CRTP, concepts, and ranges, compiling with zero overhead in production release configurations.",
+      link: "https://github.com/jellespijker/scripta",
+      tech: ["C++20", "ParaView", "VTU", "CRTP", "Ranges", "Concepts"]
+    },
+    {
+      name: "Generic Autonomous (Under-)water vehicle Library C++",
+      role: "Creator (Royal IHC)",
+      description: "A hardware-independent C++ library for autonomous surface and underwater vehicle control. Implemented advanced Coverage Path Planning (CPP), sensor fusion, and Unscented Kalman Filtering (UKF) deployed on BeagleBone Black and Raspberry Pi.",
+      tech: ["C++", "Eigen3", "Boost", "Kalman Filtering", "Coverage Path Planning", "SBC", "Embedded Linux"]
+    },
+    {
+      name: "Autonomous Dredge Bot",
+      role: "Creator (Royal IHC)",
+      description: "Designed and developed an Archimedes-screw propelled autonomous dredging bot operating in dynamic, unknown maritime environments. Deployed a generic, custom C++ autonomous marine controller framework on embedded single-board computer clusters.",
+      link: "https://github.com/jellespijker/HAN-thesis",
+      tech: ["C++", "SBC Clusters", "Robot Control", "Archimedes Screw", "Sensor Fusion", "Project Chrono"]
+    },
+    {
+      name: "MTIpython",
+      role: "Creator (Royal IHC)",
+      description: "A unit-safe Python library for mechanical, fluid, and thermal calculations. Implemented fluid flow network solvers (Hardy-Cross, Newton-Raphson), Bingham slurry solver, soil mechanics algorithms (Verruijt/Miedema), and automatic LaTeX report generators.",
+      link: "https://gitlab.com/MTIpython/MTIpython",
+      tech: ["Python", "Jupyter", "Hardy-Cross Solver", "Bingham Slurry", "Soil Mechanics", "LaTeX"]
     },
     {
       name: "UltiMaker Cura Cloud",
@@ -369,9 +425,41 @@ export const cvData: CVData = {
     {
       name: "UltiMaker Cura",
       role: "Core Developer / Lead",
-      description: "The premier open-source 3D printing slicer driving 15 million prints/month. Modernized the core engine to C++20 and engineered a decoupled, high-performance plugin architecture.",
+      description: "The premier open-source 3D printing slicer driving 15 million prints/month. Modernized the core engine to C++20/23 and engineered a decoupled, high-performance plugin architecture.",
       link: "https://github.com/Ultimaker/Cura",
-      tech: ["C++20", "Python", "Qt"]
+      tech: ["C++20", "Python", "Qt", "gRPC", "Protobuf"]
+    },
+    {
+      name: "CuraEngine Plugins",
+      role: "Lead Architect",
+      description: "Designed and implemented a gRPC-based plugin system in C++ for CuraEngine, allowing seamless hook-ins during slicing calculations to change physical toolpath planning and operations in real-time.",
+      tech: ["C++20", "gRPC", "Protobuf", "Plugin Architecture"]
+    },
+    {
+      name: "FFF PIV Toolbox",
+      role: "Creator",
+      description: "A C++ and OpenCV particle image velocimetry (PIV) toolbox designed to analyze flow fields, velocities, and extrusion mechanics in 3D printing processes using high-speed cameras.",
+      tech: ["C++", "OpenCV", "Computer Vision", "Particle Image Velocimetry", "Flow Mechanics"]
+    },
+    {
+      name: "IR Floor Heating - Home Assistant Integration",
+      role: "Creator",
+      description: "Advanced Home Assistant integration for controlling high-load electric infrared floor heating using a dual-sensor topology and Time Proportional & Integral (TPI) algorithms with comfort-safety prioritization.",
+      link: "https://github.com/jellespijker/IR-floor-heating",
+      tech: ["Python", "Home Assistant", "TPI Algorithms", "IoT", "Control Loops"]
+    },
+    {
+      name: "UltiTranslator",
+      role: "Creator",
+      description: "Context-aware domain translation agent for 3D printing based on LangGraph, semantic embeddings, and Neo4j knowledge graphs, saving €22k/year in external localization services.",
+      tech: ["LangGraph", "Neo4j", "Semantic Search", "LLM", "Python"]
+    },
+    {
+      name: "UltiMaker Digital Factory",
+      role: "Engineering Manager",
+      description: "Built the cloud fleet-management platform handling 200k visits/month, enabling secure remote printing, cloud queue scheduling, and telemetry analytics for thousands of 3D printers.",
+      link: "https://ultimaker.com/software/ultimaker-digital-factory/",
+      tech: ["SaaS", "GCP", "React"]
     },
     {
       name: "AI-In-Action",
