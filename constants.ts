@@ -42,6 +42,7 @@ export const cvData: CVData = {
       period: "March 2025 – June 2025",
       responsibility: "Managed a 10-FTE team of Cloud Developers, QA, UX, DevOps, and Architects, reporting directly to the CTO. Unified complex system integrations and optimized team throughput.",
       leadershipHighlights: [
+        { title: "Operational Cost Optimization", description: "Slashed external consulting overhead by €39k/month by strategically insourcing external cloud development and establishing an agile in-house cloud engineering capability." },
         { title: "Merger Integration", description: "Orchestrated post-merger decoupling of MakerBot and UltiMaker systems while maintaining 100% production uptime." }
       ],
       engineeringHighlights: [
