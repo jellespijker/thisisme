@@ -3,8 +3,8 @@ import { CVData } from './types';
 export const cvData: CVData = {
   profile: {
     name: "Jelle Spijker",
-    title: "Senior C++ Software Engineer | Tech Lead & Architect | Autonomous Maritime Specialist",
-    summary: "High-impact, player-coach Senior Technical Lead, Architect, and Software Development Manager with 10+ years of experience independently developing technical software, real-time embedded systems, and maritime robotics. Deep domain expertise in the dredging and maritime sectors—pioneering sensor fusion (Unscented Kalman Filters), autonomous path planning (CPP), and multi-board SBC architectures. Proven record of co-authoring high-performance WebAssembly engines saving €1.5M+ in annual cloud infrastructure, engineering custom C++ geometry visualizers, and implementing advanced image processing (FFT, Computer Vision) for sub-millimeter soil analysis. Passionate about object-oriented design (iSAQB® certified), modern C++ (11-23), and robust Linux applications in high-pressure, mission-critical environments.",
+    title: "Software Development Manager | Senior Software Lead | Software Architect",
+    summary: "High-impact, player-coach Engineering Manager with a proven record of scaling cross-functional teams, executing high-value strategic initiatives, and pioneering generative AI integrations. Expert in aligning deep technical domains—bridging Modern C++, Embedded Firmware, Cloud/SaaS, and Agentic workflows—to solve mission-critical corporate challenges. Notable achievements include co-authoring WebAssembly-compiled engines saving €1.5M+ in annual cloud infrastructure, slashing external consulting overhead by €39k/month, and navigating complex corporate restructurings to maintain 100% of product portfolio continuity under a highly supportive, coaching-centric team culture.",
     contact: {
       location: "Tiel, Gelderland, Netherlands",
       phone: "+31 6 4327 2644",
