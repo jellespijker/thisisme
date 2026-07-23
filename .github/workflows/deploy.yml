@@ -39,6 +39,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Home Assistant webhook / Nabu Casa cloudhook for visit telemetry.
+          # Optional repository secret — telemetry is disabled when unset.
+          VITE_TELEMETRY_ENDPOINT: ${{ secrets.VITE_TELEMETRY_ENDPOINT }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

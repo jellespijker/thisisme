@@ -1,11 +1,12 @@
 import React from 'react';
 import { SkillCategory } from '../types';
+import { PrintTrimmed } from '../utils/filtering';
 import SectionHeader from './SectionHeader';
 import { Icons } from './Icons';
 import SkillBadge from './SkillBadge';
 
 interface SkillsPanelProps {
-  skills: SkillCategory[];
+  skills: PrintTrimmed<SkillCategory>[];
   variant?: 'default' | 'full';
 }
 
@@ -15,10 +16,10 @@ const SkillsPanel: React.FC<SkillsPanelProps> = ({ skills, variant = 'default' }
   return (
     <div>
       <SectionHeader title="Skills" icon={<Icons.Terminal size={28} />} />
-      
+
       <div className={containerClass}>
-        {skills.map((skillGroup, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+        {skills.map(({ item: skillGroup, printHidden }, idx) => (
+          <div key={idx} className={`skill-card bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow ${printHidden ? 'print:hidden' : ''}`}>
             <h3 className="font-bold text-medido-purple text-lg mb-4 flex items-center gap-2">
               <div className="w-1.5 h-6 bg-medido-peach rounded-full"></div>
               {skillGroup.category}

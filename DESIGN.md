@@ -2,6 +2,8 @@
 
 This document specifies the design tokens, color strategies, typography configurations, and layouts powering the **thisisme** portfolio app. It bridges standard brand aesthetics with high-density print-media requirements.
 
+Tokens are defined as Tailwind v4 `@theme` variables in `index.css` (bundled at build time — no runtime CDN).
+
 ---
 
 ## 1. Visual Identity & Brand Personality
@@ -68,3 +70,16 @@ Designing for paper/A4 format requires strict constraints to preserve density an
   - Components like `.project-card`, `.recommendation-card`, and `.volunteering-item` utilize `break-inside: avoid` to keep blocks completely unified.
   - Timeline details (`.experience-item` and `.education-item`) allow graceful splitting (`break-inside: auto`) provided there are at least 4 trailing lines on each page (`orphans: 4; widows: 4`).
 - **Header Columns**: The grid wraps into a stacked flex column on print (`flex-direction: column !important`) with compact vertical spacing (`0.35rem`) to conserve critical vertical space on page 1.
+
+---
+
+## 6. Filtering & the Focused (≤3-page) Print Layout
+
+- **Filter bar**: a sticky, glassy control strip (`FilterBar.tsx`) above the hero. Profile chips use the solid-purple active state; industry chips use the peach active state. The bar is `no-print` — it *drives* the print output rather than appearing in it.
+- **Compact timeline rows**: entries outside the active filter render as slim one-line rows (reduced icon, `bg-medido-gray/60` well) so the chronology stays honest and gap-free while spending minimal space — on screen and on paper.
+- **Focused print mode** (`.cv-focused` on the app root, active whenever a profile or industry filter is set):
+  - Global density: `zoom: 0.68` (vs `0.78` for the complete CV).
+  - Card details are force-expanded on print (`.card-details`), independent of on-screen collapse state.
+  - Print budget caps (see `PRINT_CAPS` in `utils/filtering.ts`): 4/3/2 highlights per role by recency, 4 projects, 4 certifications (as one-liners), 4 skill categories, education details only for the top 2 matching entries, architecture section only on the architect CV, volunteering only on the manager CV, recommendations screen-only.
+  - Card grids that must flow across pages are converted to wrapping flex rows on print (Chromium cannot fragment CSS grid).
+  - Target and verified budget: **every function profile prints in exactly ≤3 A4 pages**.
