@@ -1,3 +1,49 @@
+/**
+ * Function profiles a reader can filter the CV on.
+ * 'all' shows the complete, unfiltered CV.
+ */
+export type FunctionProfileId = 'all' | 'architect' | 'manager' | 'senior-dev' | 'ai-dev';
+
+/** Industry domains a reader can filter the CV on. */
+export type IndustryId = 'cloud-saas' | 'ai' | 'firmware-embedded' | 'maritime' | 'manufacturing';
+
+/**
+ * Presentation metadata attached to CV entries. Tags never change the facts of
+ * an entry — they only decide when it is emphasized, compacted, or reordered.
+ * An absent `profiles`/`industries` field means "relevant everywhere".
+ */
+export interface Tagged {
+  profiles?: Exclude<FunctionProfileId, 'all'>[];
+  industries?: IndustryId[];
+  /** Lower = shown earlier / kept longer when space is constrained (print). */
+  priority?: number;
+}
+
+/**
+ * Profile-specific rewording of an entry. Variants must describe the exact
+ * same underlying facts as the base text — different emphasis, never new claims.
+ */
+export interface RoleVariant {
+  responsibility?: string;
+}
+
+export interface FunctionProfile {
+  id: FunctionProfileId;
+  /** Chip label, e.g. "Software Architect". */
+  label: string;
+  /** Headline pills shown in the header for this profile. */
+  pills: string[];
+  /** Executive summary reworded for this profile (same facts, focused emphasis). */
+  summary: string;
+  /** Ordering of skill categories for this profile (category names, first = top). */
+  skillOrder?: string[];
+}
+
+export interface Industry {
+  id: IndustryId;
+  label: string;
+}
+
 export interface ContactInfo {
   phone: string;
   email: string;
@@ -13,12 +59,12 @@ export interface Profile {
   contact: ContactInfo;
 }
 
-export interface ExperiencePoint {
+export interface ExperiencePoint extends Tagged {
   title?: string;
   description: string;
 }
 
-export interface JobRole {
+export interface JobRole extends Tagged {
   title: string;
   company: string;
   period: string;
@@ -28,17 +74,19 @@ export interface JobRole {
   leadershipHighlights?: ExperiencePoint[]; // New: Leadership specific
   engineeringHighlights?: ExperiencePoint[]; // New: Engineering specific
   responsibility?: string;
+  /** Profile-specific rewording of `responsibility` — same facts, focused emphasis. */
+  variants?: Partial<Record<Exclude<FunctionProfileId, 'all'>, RoleVariant>>;
   techStack?: string[];
   logo?: string;
   website?: string;
 }
 
-export interface SkillCategory {
+export interface SkillCategory extends Tagged {
   category: string;
   items: string[];
 }
 
-export interface Education {
+export interface Education extends Tagged {
   degree: string;
   school: string;
   year: string;
@@ -49,7 +97,7 @@ export interface Education {
   techStack?: string[];
 }
 
-export interface Certification {
+export interface Certification extends Tagged {
   name: string;
   issuer?: string;
   date?: string;
@@ -58,14 +106,14 @@ export interface Certification {
   techStack?: string[];
 }
 
-export interface VolunteerWork {
+export interface VolunteerWork extends Tagged {
   role: string;
   organization: string;
   period: string;
   description: string;
 }
 
-export interface Project {
+export interface Project extends Tagged {
   name: string;
   role: string;
   description: string;
@@ -73,13 +121,13 @@ export interface Project {
   tech?: string[];
 }
 
-export interface ArchitectureInitiative {
+export interface ArchitectureInitiative extends Tagged {
   name: string;
   description: string;
   tech: string[];
 }
 
-export interface Recommendation {
+export interface Recommendation extends Tagged {
   name: string;
   title: string;
   company?: string;

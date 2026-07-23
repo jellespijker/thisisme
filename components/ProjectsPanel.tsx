@@ -1,20 +1,26 @@
 import React from 'react';
 import { Project } from '../types';
+import { PrintTrimmed } from '../utils/filtering';
 import SectionHeader from './SectionHeader';
 import { Icons } from './Icons';
 
 interface ProjectsPanelProps {
-  projects: Project[];
+  projects: PrintTrimmed<Project>[];
 }
 
 const ProjectsPanel: React.FC<ProjectsPanelProps> = ({ projects }) => {
+  if (projects.length === 0) return null;
+
+  // When the focused print layout drops every card, drop the section header too.
+  const allHiddenOnPrint = projects.every(p => p.printHidden);
+
   return (
-    <div>
+    <div className={allHiddenOnPrint ? 'print:hidden' : ''}>
       <SectionHeader title="Products & Projects" icon={<Icons.Rocket size={28} />} />
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project, idx) => (
-          <div key={idx} className="project-card bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all group">
+        {projects.map(({ item: project, printHidden }, idx) => (
+          <div key={idx} className={`project-card bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all group ${printHidden ? 'print:hidden' : ''}`}>
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-bold text-medido-purple text-lg leading-tight group-hover:text-medido-peach transition-colors">
                 {project.link ? (

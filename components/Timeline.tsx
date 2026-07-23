@@ -1,29 +1,49 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { JobRole, Education, ExperiencePoint, Certification } from '../types';
+import { Certification, Education, ExperiencePoint } from '../types';
+import { DerivedRole, PrintTrimmed, RoleRenderMode } from '../utils/filtering';
 import { Icons } from './Icons';
 import SkillBadge from './SkillBadge';
 
+export interface DerivedEducation {
+  edu: Education;
+  mode: RoleRenderMode;
+  printHidden: boolean;
+}
+
+export interface DerivedCertification {
+  cert: Certification;
+  printHidden: boolean;
+}
+
 interface TimelineProps {
-  experience: JobRole[];
-  previousExperience: JobRole[];
-  education: Education[];
-  certifications?: Certification[];
+  experience: DerivedRole[];
+  previousExperience: DerivedRole[];
+  education: DerivedEducation[];
+  certifications?: DerivedCertification[];
+  /** True when a profile/industry filter is active — auto-expands matching entries. */
+  focused: boolean;
   mode?: 'professional' | 'educational';
 }
 
 interface MergedTimelineItem {
   id: string;
   type: 'work' | 'education' | 'previous-work' | 'certification';
+  /** 'compact' renders a slim one-line row (entry kept for an honest, gap-free chronology). */
+  renderMode: RoleRenderMode;
+  /** Row is shown on screen but dropped from the space-constrained print layout. */
+  printHidden?: boolean;
+  /** Row header prints, but its details are dropped from the print layout. */
+  detailsPrintHidden?: boolean;
   title: string;
   subtitle: string;
   period: string;
   location?: string;
   website?: string;
   responsibility?: string;
-  highlights?: ExperiencePoint[];
-  leadershipHighlights?: ExperiencePoint[];
-  engineeringHighlights?: ExperiencePoint[];
+  highlights?: PrintTrimmed<ExperiencePoint>[];
+  leadershipHighlights?: PrintTrimmed<ExperiencePoint>[];
+  engineeringHighlights?: PrintTrimmed<ExperiencePoint>[];
   techStack?: string[];
   details?: string[];
   thesisLink?: string;
@@ -31,14 +51,14 @@ interface MergedTimelineItem {
   sortValue: number;
 }
 
-const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, education, certifications, mode = 'professional' }) => {
+const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, education, certifications, focused, mode = 'professional' }) => {
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
   const col1EndRef = useRef<HTMLDivElement>(null);
   const col2StartRef = useRef<HTMLDivElement>(null);
   const col1Ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState<{ x1: number; y1: number; x2: number; y2: number; y_bottom: number; containerHeight: number } | null>(null);
-  
+
   // For dynamic height balancing
   const [heights, setHeights] = useState<Record<string, number>>({});
   const rowRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -51,8 +71,7 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
     }));
   };
 
-  const getSortValue = React.useCallback((item: any, type: string): number => {
-    const dateStr = type === 'education' ? item.year : (type === 'certification' ? item.date : item.period);
+  const getSortValue = React.useCallback((dateStr: string | undefined): number => {
     if (!dateStr) return 0;
 
     // Split by hyphen or en-dash to isolate the start date
@@ -90,41 +109,51 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
   const allTimelineItems = React.useMemo<MergedTimelineItem[]>(() => {
     const items: MergedTimelineItem[] = [];
 
+    const fromDerivedRole = (derived: DerivedRole, id: string, type: 'work' | 'previous-work'): MergedTimelineItem => ({
+      id,
+      type,
+      renderMode: derived.mode,
+      title: derived.role.title,
+      subtitle: derived.role.company,
+      period: derived.role.period,
+      location: derived.role.location,
+      website: derived.role.website,
+      responsibility: derived.responsibility,
+      highlights: derived.highlights,
+      leadershipHighlights: derived.leadershipHighlights,
+      engineeringHighlights: derived.engineeringHighlights,
+      techStack: derived.role.techStack,
+      sortValue: getSortValue(derived.role.period)
+    });
+
     if (mode === 'professional') {
       items.push(
-        ...experience.map((job, idx) => ({
-          ...job,
-          id: `work-${idx}`,
-          type: 'work' as const,
-          title: job.title,
-          subtitle: job.company,
-          period: job.period,
-          sortValue: getSortValue(job, 'work')
-        })),
-        ...previousExperience.map((job, idx) => ({
-          ...job,
-          id: `prev-${idx}`,
-          type: 'previous-work' as const,
-          title: job.title,
-          subtitle: job.company,
-          period: job.period,
-          sortValue: getSortValue(job, 'previous-work')
-        }))
+        ...experience.map((job, idx) => fromDerivedRole(job, `work-${idx}`, 'work')),
+        ...previousExperience.map((job, idx) => fromDerivedRole(job, `prev-${idx}`, 'previous-work'))
       );
     } else {
       items.push(
-        ...education.map((edu, idx) => ({
-          ...edu,
+        ...education.map(({ edu, mode: eduMode, printHidden }, idx) => ({
           id: `edu-${idx}`,
           type: 'education' as const,
+          renderMode: eduMode,
+          // On full rows the flag trims details from print; on compact rows it drops the row.
+          printHidden: eduMode === 'compact' ? printHidden : false,
+          detailsPrintHidden: eduMode === 'full' ? printHidden : false,
           title: edu.degree,
           subtitle: edu.school,
           period: edu.year,
-          sortValue: getSortValue(edu, 'education')
+          website: edu.website,
+          details: edu.details,
+          thesisLink: edu.thesisLink,
+          techStack: edu.techStack,
+          sortValue: getSortValue(edu.year)
         })),
-        ...(certifications || []).map((cert, idx) => ({
+        ...(certifications || []).map(({ cert, printHidden }, idx) => ({
           id: `cert-${idx}`,
           type: 'certification' as const,
+          renderMode: 'full' as const,
+          printHidden,
           title: cert.name,
           subtitle: cert.issuer || '',
           period: cert.date || '',
@@ -133,7 +162,7 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
             ...(cert.details || [])
           ],
           techStack: cert.techStack,
-          sortValue: getSortValue(cert, 'certification')
+          sortValue: getSortValue(cert.date)
         }))
       );
     }
@@ -141,7 +170,8 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
     return items.sort((a, b) => b.sortValue - a.sortValue);
   }, [mode, experience, previousExperience, education, certifications, getSortValue]);
 
-  // Set default expanded states for requested items
+  // Set default expanded states: in a focused view every full (matching) entry
+  // is opened; in the complete view the curated set of key entries is opened.
   useEffect(() => {
     const titlesToExpand = [
       "Manager Firmware & Cloud Development",
@@ -158,10 +188,18 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
 
     const defaults: Record<string, boolean> = {};
     allTimelineItems.forEach(item => {
-      if (titlesToExpand.some(t => item.title.toLowerCase().includes(t.toLowerCase()))) {
+      if (focused) {
+        if (item.renderMode === 'full') defaults[item.id] = true;
+      } else if (titlesToExpand.some(t => item.title.toLowerCase().includes(t.toLowerCase()))) {
         defaults[item.id] = true;
       }
     });
+
+    if (focused) {
+      // A changed filter is a new reading context: reset to the tailored defaults.
+      setExpandedIds(defaults);
+      return;
+    }
 
     setExpandedIds(prev => {
       // Merge defaults, but keep any manually toggled states
@@ -171,7 +209,7 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
       });
       return next;
     });
-  }, [allTimelineItems]);
+  }, [allTimelineItems, focused]);
 
   // Dynamically calculate the split point based on actual element heights
   const midIndex = React.useMemo(() => {
@@ -264,9 +302,9 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
         const y1 = endRect.top - containerRect.top + endRect.height / 2;
         const x2 = startRect.left - containerRect.left + startRect.width / 2;
         const y2 = startRect.top - containerRect.top + startRect.height / 2;
-        
+
         // Calculate the bottom point safely below the last card in Column 1
-        const y_bottom = col1Rect 
+        const y_bottom = col1Rect
           ? (col1Rect.bottom - containerRect.top + 28)
           : (y1 + 80);
 
@@ -298,10 +336,10 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
     };
   }, [mode, education, certifications, midIndex]);
 
-  const renderHighlights = (highlights: ExperiencePoint[]) => (
+  const renderHighlights = (highlights: PrintTrimmed<ExperiencePoint>[]) => (
     <div className="space-y-3 text-medido-purple/80 text-base leading-relaxed mt-4">
-      {highlights.map((highlight, idx) => (
-        <div key={idx} className="flex items-start gap-2.5">
+      {highlights.map(({ item: highlight, printHidden }, idx) => (
+        <div key={idx} className={`flex items-start gap-2.5 ${printHidden ? 'print:hidden' : ''}`}>
           <div className="mt-2 min-w-[6px] h-[6px] rounded-full bg-medido-peach shrink-0" />
           <div className="w-full">
             {highlight.title && <strong className="text-medido-purple font-bold block text-sm mb-0.5">{highlight.title}</strong>}
@@ -330,13 +368,17 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
     const isExpanded = !!expandedIds[item.id];
     const isWork = item.type === 'work' || item.type === 'previous-work';
 
+    const hasLeadership = (item.leadershipHighlights?.length ?? 0) > 0;
+    const hasEngineering = (item.engineeringHighlights?.length ?? 0) > 0;
+    const hasGeneric = (item.highlights?.length ?? 0) > 0;
+
     return (
-      <div 
+      <div
         onClick={() => toggleExpand(item.id)}
         className={`w-full p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:shadow-md cursor-pointer group text-left relative overflow-hidden ${
-          isWork 
-            ? isExpanded 
-              ? 'bg-white border-medido-peach/40 shadow-sm' 
+          isWork
+            ? isExpanded
+              ? 'bg-white border-medido-peach/40 shadow-sm'
               : 'bg-white border-medido-purple/10 hover:border-medido-purple/20'
             : isExpanded
               ? 'bg-medido-peach/[0.06] border-medido-peach/50 shadow-sm'
@@ -348,14 +390,14 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
             <h4 className="text-xl font-extrabold text-medido-purple group-hover:text-medido-peach transition-colors leading-snug">
               {item.title}
             </h4>
-            
+
             {/* Unified Organization/School and Period info inside card header */}
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm">
               {item.website ? (
-                <a 
-                  href={item.website} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={item.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-bold text-medido-purple hover:text-medido-peach flex items-center gap-1 group/link"
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -364,10 +406,10 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
               ) : (
                 <span className="font-bold text-medido-purple/80">{item.subtitle}</span>
               )}
-              
+
               <span className="text-medido-purple/30">•</span>
               <span className="font-semibold text-medido-purple/60">{item.period}</span>
-              
+
               {item.location && (
                 <>
                   <span className="text-medido-purple/30">•</span>
@@ -376,36 +418,39 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
               )}
             </div>
           </div>
-          <button className="text-medido-purple/40 group-hover:text-medido-purple shrink-0 mt-1 transition-colors bg-medido-gray hover:bg-medido-purple/5 p-2 rounded-xl border border-medido-purple/5">
+          <button className="no-print text-medido-purple/40 group-hover:text-medido-purple shrink-0 mt-1 transition-colors bg-medido-gray hover:bg-medido-purple/5 p-2 rounded-xl border border-medido-purple/5">
             {isExpanded ? <Icons.Minimize size={18} /> : <Icons.Maximize size={18} />}
           </button>
         </div>
 
-        {/* Collapsible area */}
-        <div className={`transition-all duration-500 overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100 mt-5' : 'max-h-0 opacity-0'}`} onClick={(e) => e.stopPropagation()}>
+        {/* Collapsible area — the `card-details` class force-expands it on print */}
+        <div
+          className={`card-details transition-all duration-500 overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100 mt-5' : 'max-h-0 opacity-0'} ${item.detailsPrintHidden ? 'print:hidden' : ''}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           {item.responsibility && (
             <div className="mb-4 p-3.5 bg-medido-gray rounded-xl border border-gray-100 text-sm">
               <span className="font-bold text-medido-purple">Scope:</span> <span className="text-medido-purple/80">{item.responsibility}</span>
             </div>
           )}
 
-          {item.highlights && renderHighlights(item.highlights)}
+          {hasGeneric && renderHighlights(item.highlights!)}
 
-          {item.leadershipHighlights && (
+          {hasLeadership && (
             <div className="mt-4">
               <h5 className="flex items-center gap-1.5 text-medido-purple font-bold text-xs uppercase tracking-wider opacity-70">
                 <Icons.Users size={14} /> Leadership Focus
               </h5>
-              {renderHighlights(item.leadershipHighlights)}
+              {renderHighlights(item.leadershipHighlights!)}
             </div>
           )}
 
-          {item.engineeringHighlights && (
+          {hasEngineering && (
             <div className="mt-4">
               <h5 className="flex items-center gap-1.5 text-medido-purple font-bold text-xs uppercase tracking-wider opacity-70">
                 <Icons.Code size={14} /> Engineering Focus
               </h5>
-              {renderHighlights(item.engineeringHighlights)}
+              {renderHighlights(item.engineeringHighlights!)}
             </div>
           )}
 
@@ -440,13 +485,26 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
     );
   };
 
+  /** Slim one-line row for entries outside the active filter: keeps the career chronology honest without spending space. */
+  const renderCompactContent = (item: MergedTimelineItem) => (
+    <div className="compact-item w-full px-6 py-3 rounded-2xl border border-medido-purple/10 bg-medido-gray/60">
+      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+        <span className="font-bold text-medido-purple/80 text-sm">{item.title}</span>
+        <span className="text-medido-purple/30 text-sm">•</span>
+        <span className="font-semibold text-medido-purple/60 text-sm">{item.subtitle}</span>
+        <span className="text-medido-purple/30 text-sm">•</span>
+        <span className="text-medido-purple/50 text-sm">{item.period}</span>
+      </div>
+    </div>
+  );
+
   const renderTimelineRow = (item: MergedTimelineItem, iconRef?: React.RefObject<HTMLDivElement | null>) => {
     const isWork = item.type === 'work' || item.type === 'previous-work';
-    const hideOnPrint = false;
+    const isCompact = item.renderMode === 'compact';
 
     return (
-      <div 
-        key={item.id} 
+      <div
+        key={item.id}
         ref={el => {
           if (el) {
             rowRefs.current[item.id] = el;
@@ -458,19 +516,19 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
           }
         }}
         data-timeline-id={item.id}
-        className={`relative flex gap-6 lg:gap-8 items-start mb-5 lg:mb-7 ${
+        className={`relative flex gap-6 lg:gap-8 items-start ${isCompact ? 'mb-3' : 'mb-5 lg:mb-7'} ${
           isWork ? 'experience-item' : 'education-item'
         } ${
-          hideOnPrint ? 'print:hidden' : ''
+          item.printHidden ? 'print:hidden' : ''
         }`}
       >
         {/* Left Side: Timeline line node containing enlarged icon */}
         <div className="flex flex-col items-center shrink-0 relative z-10">
-          <div 
+          <div
             ref={iconRef}
-            className={`w-12 h-12 lg:w-14 lg:h-14 rounded-full border-4 border-white flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 ${
+            className={`${isCompact ? 'w-12 h-12 lg:w-14 lg:h-14 scale-[0.6]' : 'w-12 h-12 lg:w-14 lg:h-14'} rounded-full border-4 border-white flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110 ${
               isWork ? 'bg-medido-purple text-white shadow-medido-purple/20' : 'bg-medido-peach text-medido-purple shadow-medido-peach/20'
-            }`}
+            } ${isCompact ? 'opacity-60' : ''}`}
           >
             {isWork ? (
               <Icons.Briefcase className="w-5 h-5 lg:w-6 lg:h-6" />
@@ -484,7 +542,7 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
 
         {/* Right Side: The full unified card component */}
         <div className="flex-1 min-w-0">
-          {renderCardContent(item)}
+          {isCompact ? renderCompactContent(item) : renderCardContent(item)}
         </div>
       </div>
     );
@@ -541,9 +599,9 @@ const Timeline: React.FC<TimelineProps> = ({ experience, previousExperience, edu
           {coords && (() => {
             const { x1, y1, x2, y2, y_bottom, containerHeight } = coords;
             // Route the vertical line in the gutter channel to the left of Column 2's icons
-            const x_gutter = x2 - 32; 
+            const x_gutter = x2 - 32;
             const r = 16; // Turn corner radius for smooth curves
-            
+
             // Circuit trace routing path
             const dPath = `
               M ${x1} ${y1}

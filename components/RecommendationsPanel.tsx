@@ -1,10 +1,11 @@
 import React from 'react';
 import { Recommendation } from '../types';
+import { PrintTrimmed } from '../utils/filtering';
 import SectionHeader from './SectionHeader';
 import { Quote, Linkedin } from 'lucide-react';
 
 interface RecommendationsPanelProps {
-  recommendations: Recommendation[];
+  recommendations: PrintTrimmed<Recommendation>[];
 }
 
 const RecommendationsPanel: React.FC<RecommendationsPanelProps> = ({ recommendations }) => {
@@ -24,20 +25,25 @@ const RecommendationsPanel: React.FC<RecommendationsPanelProps> = ({ recommendat
     'from-emerald-400 to-teal-600',
   ];
 
+  if (recommendations.length === 0) return null;
+
+  // When the focused print layout drops every card, drop the section header too.
+  const allHiddenOnPrint = recommendations.every(r => r.printHidden);
+
   return (
-    <div className="w-full">
-      <SectionHeader 
-        title="Recommendations" 
-        icon={<Quote className="w-7 h-7 text-medido-purple" />} 
+    <div className={`w-full ${allHiddenOnPrint ? 'print:hidden' : ''}`}>
+      <SectionHeader
+        title="Recommendations"
+        icon={<Quote className="w-7 h-7 text-medido-purple" />}
       />
-      
+
       <div className="recommendations-grid grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-        {recommendations.map((rec, idx) => {
+        {recommendations.map(({ item: rec, printHidden }, idx) => {
           const gradient = gradients[idx % gradients.length];
           return (
-            <div 
-              key={idx} 
-              className="recommendation-card relative flex flex-col justify-between bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-medido-peach/30 hover:-translate-y-1 transition-all duration-300"
+            <div
+              key={idx}
+              className={`recommendation-card relative flex flex-col justify-between bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-medido-peach/30 hover:-translate-y-1 transition-all duration-300 ${printHidden ? 'print:hidden' : ''}`}
             >
               {/* Decorative Quote Icon in the background */}
               <div className="absolute top-6 right-8 text-gray-50 pointer-events-none select-none print:hidden">

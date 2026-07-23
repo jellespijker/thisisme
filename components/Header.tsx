@@ -4,10 +4,14 @@ import { Icons } from './Icons';
 
 interface HeaderProps {
   profile: Profile;
+  /** Header pills for the active function profile (e.g. "Software Architect"). */
+  pills: string[];
+  /** Executive summary reworded for the active function profile. */
+  summary: string;
   onPrint: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
+const Header: React.FC<HeaderProps> = ({ profile, pills, summary, onPrint }) => {
   return (
     <>
       {/* Hero Section - The "Peach" Block */}
@@ -37,15 +41,11 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
-                  Software Development Manager
-                </div>
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
-                  Senior Software Lead
-                </div>
-                <div className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
-                  Software Architect
-                </div>
+                {pills.map(pill => (
+                  <div key={pill} className="inline-block bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full text-medido-purple font-bold shadow-sm">
+                    {pill}
+                  </div>
+                ))}
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -97,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({ profile, onPrint }) => {
                   <Icons.Sparkles size={20} className="text-medido-purple" /> Executive Profile
                 </h2>
                 <p className="text-base md:text-lg leading-relaxed text-medido-purple/90 font-medium">
-                  {profile.summary}
+                  {summary}
                 </p>
               </div>
             </div>
