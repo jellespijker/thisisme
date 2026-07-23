@@ -441,6 +441,51 @@ export const cvData: CVData = {
       issuer: "FLIR",
       profiles: ['senior-dev', 'ai-dev'],
       priority: 6
+    },
+    {
+      name: "Leadership for Engineers (LfE101x)",
+      issuer: "DelftX | edX",
+      profiles: ['manager'],
+      priority: 4
+    },
+    {
+      name: "Coding the Matrix: Linear Algebra through Computer Science Applications",
+      issuer: "Brown University | Coursera",
+      profiles: ['senior-dev', 'ai-dev'],
+      priority: 7
+    },
+    {
+      name: "Circuits and Electronics 1: Basic Circuit Analysis (6.002.1x)",
+      issuer: "MITx",
+      profiles: ['senior-dev'],
+      industries: ['firmware-embedded'],
+      priority: 7
+    },
+    {
+      name: "Introduction to Linux (LFS101x)",
+      issuer: "LinuxFoundationX",
+      profiles: ['senior-dev'],
+      priority: 8
+    },
+    {
+      name: "Three.js, React Three Fiber & Drei",
+      profiles: ['senior-dev'],
+      industries: ['cloud-saas'],
+      priority: 8
+    },
+    {
+      name: "Hands-on LoRa workshop",
+      issuer: "Royal IHC",
+      profiles: ['senior-dev'],
+      industries: ['firmware-embedded'],
+      priority: 9
+    },
+    {
+      name: "Geometrische productspecificatie en verificatie (GD&T)",
+      issuer: "Nedal Aluminium BV",
+      profiles: [],
+      industries: ['manufacturing'],
+      priority: 9
     }
   ],
   skills: [
@@ -511,6 +556,14 @@ export const cvData: CVData = {
       profiles: ['senior-dev'],
       priority: 2,
       description: "Contributed C++ library recipes to the global Conan Package Manager index, improving Linux/ARM multi-platform build compliance."
+    },
+    {
+      role: "Emergency Response & First Aid Officer (BHV)",
+      organization: "UltiMaker · Royal IHC · Nedal Aluminium",
+      period: "2008 – 2024",
+      profiles: ['manager'],
+      priority: 4,
+      description: "Sixteen years of voluntary in-house emergency response and first-aid (BHV) service across three employers — from member to foreman in charge of the emergency and first-aid supplies at Nedal Aluminium."
     }
   ],
   projects: [
@@ -760,6 +813,105 @@ export const cvData: CVData = {
       priority: 1,
       text: "I was impressed by Jelle’s creative capabilities in problem solving and the drive for understanding the principles governing the technological challenges he addressed in the soil analyzer. His self-taught capabilities exceed his curriculum by far.",
       linkedin: "https://www.linkedin.com/in/joost-koevoets-b192988/"
+    },
+    {
+      name: "Konstantinos Karmas",
+      title: "Software Engineer at NL-ix",
+      date: "November 10, 2021",
+      relationship: "Konstantinos worked with Jelle on the same team",
+      profiles: ['senior-dev'],
+      priority: 2,
+      text: "Jelle is a smart, patient and overall very fun software engineer to work with. I had the pleasure to work with Jelle side-by-side on a software product where it was easy to see that Jelle fits the definition of an engineer, as he can find a solution to any task thrown his way. He is communicative and always willing to help and share his vast knowledge, while keeping the atmosphere light with his sense of humour. In addition, he is very proactive and eager to take on the toughest challenges. From the very first moments he joined the team, he identified parts in the code and the build process that had room for improvement and started proactively taking steps to fix them. Any team would be lucky to have Jelle as a member."
+    },
+    {
+      name: "Paola Fanzio",
+      title: "Assistant Professor at Delft University of Technology",
+      date: "February 17, 2020",
+      relationship: "Paola managed Jelle directly",
+      profiles: ['senior-dev', 'ai-dev'],
+      industries: ['manufacturing'],
+      priority: 3,
+      text: "Jelle Spijker has worked in my team for several months and I am glad to write a recommendation letter for him. He is a really talented engineer. From the technical point of view, his contribution has been extremely valuable to develop new measurements tools. He is really versatile and knowledgeable: he is mastering modelling, hardware development, software development and he knows how to combine all the different aspects together.\nHe is a good team player: always willing to support and help other members of the team without losing his personal working goals. He is really good in planning and he is result oriented. I appreciate his ability to communicate clearly and honestly about any issue. It is pleasant to work with him and his positive attitude is a driving force for the entire team.\nHe is independent and reliable and always willing to take his own responsibilities. He can easily handle multiple projects, producing clear documentation."
+    },
+    {
+      name: "André Trouwborst",
+      title: "Manager engineering",
+      date: "September 16, 2015",
+      relationship: "André managed Jelle directly",
+      profiles: [],
+      industries: ['maritime'],
+      priority: 2,
+      text: "I was lucky to be the one who taught Jelle the most important things concerning Machinery & Piping necessary at Shipbuilding.\nJelle is a very reliable colleague, he is eager to learn. Besides, I didn’t often train a colleague who was so quick at learning to control things.\nJelle never recedes as to technical issues, he is even immune to stress."
+    },
+    {
+      name: "Paul Hansman",
+      title: "Lead Mechanical Engineer bij Damen Shipyards Group",
+      date: "July 31, 2015",
+      relationship: "Paul worked with Jelle on the same team",
+      profiles: [],
+      industries: ['maritime'],
+      priority: 3,
+      text: "Jelle is a colleague of mine for over a year now. He is very eager to learn and always trying to solve the problem in the most efficient way. His motivation in science is really catching and inspiring."
+    },
+    {
+      name: "Jorn Sturkenboom",
+      title: "Integrated Logistics Support Manager at Commando Materieel en IT - Defensie",
+      date: "January 11, 2014",
+      relationship: "Jorn worked with Jelle but on different teams",
+      profiles: [],
+      industries: ['maritime'],
+      priority: 5,
+      text: "Ik heb Jelle leren kennen als een ontzettend gemotiveerd en prettig persoon die ontzettend veel plezier uit zijn werk haalt. Naast zijn gemotiveerde instelling binnen het werkgebied is hij ook zeer gedreven om zichzelf te ontwikkelen en heeft hij een brede interesse voor alles wat met techniek te maken heeft."
+    },
+    {
+      name: "Gert Jan Bos",
+      title: "Senior Die corrector/designer Nedal Aluminium BV",
+      date: "June 27, 2013",
+      relationship: "Gert Jan managed Jelle directly",
+      profiles: [],
+      industries: ['manufacturing'],
+      priority: 4,
+      text: "Jelle came working for Nedal Aluminium BV as an apprentice die-corrector under my tutelage. His will to learn something was fascinating. Always wanting to know more. He had a clear mind for new ideas, always trying to innovate. He didn’t want to waste time, it can be done faster or simpler. He was a corrector with an extra perspective view for the total organization. It was a privilege to have worked with him."
+    },
+    {
+      name: "Ruben van Wiefferen",
+      title: "Project Management | PMP | Industrial Automation | Process Control Instrumentation | Mechanical Engineering",
+      date: "June 23, 2013",
+      relationship: "Ruben and Jelle studied together",
+      profiles: [],
+      industries: ['manufacturing'],
+      priority: 6,
+      text: "Jelle is een van de meest waardevolle personen waar ik mee gewerkt heb. We leerde elkaar kennen 4 jaar geleden op het ROC van Amsterdam. Na het behalen van ons diploma zijn we beide gestart met de bachelor opleiding werktuigbouwkunde op de HAN in Arnhem.\n\nDe ervaring die ik over heb gehouden aan de projecten die wij samen hebben uitgevoerd kan ik als zeer goed omschrijven. Jelle is een persoon met een grote technische kennis, die gemakkelijk out of the box kan denken en die altijd het beste uit zichzelf wilt halen. Wanneer je eens met Jelle in contact komt ontdek je een geweldig persoon met de juiste vaardigheden!"
+    },
+    {
+      name: "Refik Konar",
+      title: "KONAR Extrusion",
+      date: "March 26, 2013",
+      relationship: "Refik managed Jelle directly",
+      profiles: [],
+      industries: ['manufacturing'],
+      priority: 7,
+      text: "Jelle, identifizierte sich mit seinen Aufgaben und dem Unternehmen und zeigte großen Fleiß und Eifer. Aufgrund seiner raschen Auffassungsgabe arbeitete er sich sicher in neue Aufgabenstellungen ein. Eine hohe Ausdauer und Belastbarkeit runden sein Qualifikationsprofil ab. Er wendete seine Fachkenntnisse sehr zielorientiert in der Praxis an. Er aktualisierte sein Wissen durch die Teilnahme an Weiterbildungsveranstaltungen sowie im Selbststudium stets in eigener Initiative und war daher ein intern und extern sehr geschätzter Ansprechpartner.\nEr erledigte seine Aufgaben kompetent, flexibel und teamorientiert. Seine Aufgaben waren in hohem Maße termingebunden. Jelle hat die ihm übertragenen Aufgaben stets zu unserer vollen Zufriedenheit ausgeführt.\n\nDas Aufgabengebiet von Jelle umfasste im Einzelnen:\n* Begleitung von Konstruktionsprojekten und -aufträgen, vom Entwurf bis zur Fertigung.\n* Erstellung von Plänen und Konstruktionszeichnungen in der Entwurfsphase, z.B. Entwurfszeichnungen oder Detailzeichnungen, unterschiedlichen perspektivischen Darstellungen, Ausschnitten.\n* Selbstständige Anfertigung von Werkzeugen, z.B. fachbezogene Durchführung von Korrekturen und Dokumentationen unter Berücksichtigung vorgegebener Konstruktionsrichtlinien, kundenspezifischer Vorgaben.\n* Durchführen von Berechnungen zur Dimensionierung von zu konstruierenden Teilen und, Schwerpunkt, Masse.\nIch wünsche Jelle für seine Zukunft alles Gute."
+    },
+    {
+      name: "Gerrit Stokkers",
+      title: "Retired bij Vernay",
+      date: "November 26, 2011",
+      relationship: "Gerrit managed Jelle directly",
+      profiles: [],
+      industries: ['manufacturing'],
+      priority: 5,
+      text: "Ik heb meer dan 6 jaar met Jelle gewerkt. Van leerling corrector tot volwas corrector. Hij beheerst het vak als Die corrector uitstekend.\nMaar Jelle is van veel meer markten thuis. Bijvoorbeeld Proces engineer, of Project engineer.\nIk heb met Jelle een aantal projecten (bv standtijd verbetering matrijzen voor 7*** legering) gedaan. Wat hij zeer gestructureerd uitvoert, met een perfecte documentatie. Is zeer prettig mee te werken, want hij zorgt altijd dat je zeer allert blijft. Met andere woorden, hij is altijd kritisch."
+    },
+    {
+      name: "R. Plak",
+      title: "Hermes",
+      date: "August 22, 2010",
+      relationship: "R. and Jelle studied together",
+      profiles: [],
+      industries: [],
+      priority: 8,
+      text: "In my years in the School for Fine arts and crafts I have gotten to know Jelle Spijker as a natural talent when it comes to working metal.\n\nA combination of keen technical insight and the capability to actually put it to practice. A true craftsman, who is not easily distracted and keeps on going on a steady pace.\n\nAs a classmate and friend, he has always been there to help out one in need and has endless patience for any one willing to learn."
     }
   ]
 };

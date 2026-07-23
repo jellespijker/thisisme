@@ -9,7 +9,7 @@ import SectionHeader from './components/SectionHeader';
 import { Icons } from './components/Icons';
 import RecommendationsPanel from './components/RecommendationsPanel';
 import { cvData } from './constants';
-import { getProfile, isIndustryId, isProfileId } from './profiles';
+import { getProfile } from './profiles';
 import {
   DEFAULT_FILTER,
   deriveCV,
@@ -17,14 +17,12 @@ import {
   filterStateFromUrl,
   filterStateToSearch,
 } from './utils/filtering';
-import { track } from './utils/telemetry';
+import { track, telemetryConfigured } from './utils/telemetry';
 import { FunctionProfileId, IndustryId } from './types';
 
 const App: React.FC = () => {
   const [filter, setFilter] = useState<FilterState>(() =>
-    typeof window === 'undefined'
-      ? DEFAULT_FILTER
-      : filterStateFromUrl(window.location.search, isProfileId, isIndustryId)
+    typeof window === 'undefined' ? DEFAULT_FILTER : filterStateFromUrl(window.location.search)
   );
 
   const derived = useMemo(() => deriveCV(cvData, filter), [filter]);
@@ -44,8 +42,7 @@ const App: React.FC = () => {
 
   // Support back/forward navigation between filter states.
   useEffect(() => {
-    const onPopState = () =>
-      setFilter(filterStateFromUrl(window.location.search, isProfileId, isIndustryId));
+    const onPopState = () => setFilter(filterStateFromUrl(window.location.search));
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
@@ -166,7 +163,15 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Jelle Spijker | Software Leadership & Architecture</h2>
           <p className="text-white/70">Connecting physical craftsmanship with cloud scale.</p>
-          <div className="mt-8 pt-8 border-t border-white/20 text-white/50 text-sm">
+          <div className="mt-8 pt-8 border-t border-white/20 text-white/50 text-sm space-y-3">
+            {telemetryConfigured() && (
+              <p className="max-w-3xl mx-auto">
+                A note on telemetry: this site sends a small, cookie-free visit signal (page view,
+                filter choice, PDF export) to my own Home Assistant server at home — no third-party
+                analytics, no cross-visit tracking, and browser Do&nbsp;Not&nbsp;Track / Global Privacy
+                Control settings are honored.
+              </p>
+            )}
             <p>© {new Date().getFullYear()} Jelle Spijker. All rights reserved.</p>
           </div>
         </div>

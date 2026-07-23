@@ -29,6 +29,9 @@ const optedOut = (): boolean => {
   return navigator.doNotTrack === '1' || nav.globalPrivacyControl === true;
 };
 
+/** True when the build ships with a telemetry endpoint (used for the footer disclosure). */
+export const telemetryConfigured = (): boolean => ENDPOINT !== '';
+
 export const telemetryEnabled = (): boolean => ENDPOINT !== '' && !optedOut();
 
 export const track = (event: TelemetryEvent, props: Record<string, string> = {}): void => {

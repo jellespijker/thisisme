@@ -205,26 +205,70 @@ export const deriveCV = (data: CVData, state: FilterState): DerivedCV => {
 };
 
 /* ------------------------------------------------------------------ */
-/* URL <-> filter state (shareable links, e.g. ?profile=architect&industries=ai,cloud-saas) */
+/* URL <-> filter state.
+ *
+ * Canonical shareable form uses compact bare tokens — ideal for links in an
+ * exported PDF or a motivation letter:
+ *   ?maritime                      → maritime industry
+ *   ?architect                     → Software Architect profile
+ *   ?ai-dev&ai&cloud-saas          → profile + two industries
+ * Friendly aliases (?cloud, ?firmware, ?manager, ?dev, …) and the legacy long
+ * form (?profile=architect&industries=ai,cloud-saas) are accepted as well. */
 
-export const filterStateFromUrl = (
-  search: string,
-  isProfileId: (v: string) => boolean,
-  isIndustryId: (v: string) => boolean
-): FilterState => {
-  const params = new URLSearchParams(search);
-  const profileRaw = params.get('profile') ?? 'all';
-  const industriesRaw = (params.get('industries') ?? '').split(',').filter(Boolean);
-  return {
-    profile: isProfileId(profileRaw) ? (profileRaw as FunctionProfileId) : 'all',
-    industries: industriesRaw.filter(isIndustryId) as IndustryId[],
-  };
+const PROFILE_ALIASES: Record<string, FunctionProfileId> = {
+  'all': 'all', 'complete': 'all', 'full': 'all',
+  'architect': 'architect', 'software-architect': 'architect', 'sa': 'architect',
+  'manager': 'manager', 'engineering-manager': 'manager', 'edm': 'manager', 'em': 'manager',
+  'senior-dev': 'senior-dev', 'senior-developer': 'senior-dev', 'senior': 'senior-dev', 'dev': 'senior-dev', 'developer': 'senior-dev', 'cpp': 'senior-dev',
+  'ai-dev': 'ai-dev', 'ai-developer': 'ai-dev', 'aidev': 'ai-dev', 'ml': 'ai-dev',
 };
 
+const INDUSTRY_ALIASES: Record<string, IndustryId> = {
+  'cloud-saas': 'cloud-saas', 'cloud': 'cloud-saas', 'saas': 'cloud-saas',
+  'ai': 'ai', 'agents': 'ai',
+  'firmware-embedded': 'firmware-embedded', 'firmware': 'firmware-embedded', 'embedded': 'firmware-embedded', 'iot': 'firmware-embedded',
+  'manufacturing': 'manufacturing', '3d-printing': 'manufacturing', '3dprinting': 'manufacturing', 'printing': 'manufacturing',
+  'maritime': 'maritime', 'dredging': 'maritime', 'offshore': 'maritime', 'shipbuilding': 'maritime',
+};
+
+export const filterStateFromUrl = (search: string): FilterState => {
+  const params = new URLSearchParams(search);
+  let profile: FunctionProfileId = 'all';
+  const industries: IndustryId[] = [];
+
+  const applyToken = (raw: string): void => {
+    const token = raw.trim().toLowerCase();
+    if (!token) return;
+    if (token in PROFILE_ALIASES) {
+      profile = PROFILE_ALIASES[token];
+    } else if (token in INDUSTRY_ALIASES) {
+      const id = INDUSTRY_ALIASES[token];
+      if (!industries.includes(id)) industries.push(id);
+    }
+  };
+
+  params.forEach((value, key) => {
+    if (key === 'profile') {
+      applyToken(value);
+    } else if (key === 'industries') {
+      value.split(/[,\s]+/).forEach(applyToken);
+    } else if (key === '') {
+      // Tolerates the "?=maritime" form.
+      value.split(/[,\s]+/).forEach(applyToken);
+    } else {
+      // Compact bare-token form: "?architect&maritime". A stray value
+      // ("?architect=1") is ignored — the key is the token.
+      applyToken(key);
+    }
+  });
+
+  return { profile, industries };
+};
+
+/** Canonical compact form, e.g. "?architect&maritime&ai". */
 export const filterStateToSearch = (state: FilterState): string => {
-  const params = new URLSearchParams();
-  if (state.profile !== 'all') params.set('profile', state.profile);
-  if (state.industries.length > 0) params.set('industries', state.industries.join(','));
-  const s = params.toString();
-  return s ? `?${s}` : '';
+  const tokens: string[] = [];
+  if (state.profile !== 'all') tokens.push(state.profile);
+  tokens.push(...state.industries);
+  return tokens.length > 0 ? `?${tokens.join('&')}` : '';
 };

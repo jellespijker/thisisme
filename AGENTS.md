@@ -10,7 +10,7 @@ To collaborate effectively, prevent build issues, and preserve visual and techni
 
 This is a high-density, interactive single-page web app built with **React**, **Vite**, and **TailwindCSS v4** (fully bundled — no runtime CDNs). It serves three primary targets:
 - **Web App**: A modern, interactive portfolio featuring glassmorphic designs, expandable timeline details, and responsive sections.
-- **Function-profile & industry filtering**: Readers (recruiters) can view the CV "as" a target role — Software Architect, Engineering Development Manager, Senior Developer, Senior AI Developer — and/or filter by industry (Cloud & SaaS, AI & Agents, Firmware & Embedded, Manufacturing & 3D Printing, Maritime & Dredging). Filter state is shareable via URL query params (`?profile=architect&industries=ai,cloud-saas`).
+- **Function-profile & industry filtering**: Readers (recruiters) can view the CV "as" a target role — Software Architect, Engineering Development Manager, Senior Developer, Senior AI Developer — and/or filter by industry (Cloud & SaaS, AI & Agents, Firmware & Embedded, Manufacturing & 3D Printing, Maritime & Dredging). Filter state is shareable via compact URL tokens designed to be embedded in exported PDFs and motivation letters — `?maritime`, `?architect`, `?ai-dev&ai&cloud-saas` — with friendly aliases (`?cloud`, `?firmware`, `?dev`, …) and the legacy long form (`?profile=…&industries=…`) also accepted (see `PROFILE_ALIASES`/`INDUSTRY_ALIASES` in `utils/filtering.ts`).
 - **A4 PDF/Print CV**: A pixel-perfect print resume via `window.print()`. The **complete** CV prints in full; a **focused** (filtered) CV prints in **max 3 A4 pages** through print caps and condensed layout.
 
 ---
