@@ -34,6 +34,9 @@ export const cvData: CVData = {
       priority: 1,
       responsibility: "Directs a high-performing multi-disciplinary department across Firmware, Desktop, and Cloud domains. Championed an Agentic SDLC transformation to sustain 100% product portfolio continuity and strict SLAs through corporate restructuring (scaling from 17 down to 5 FTEs), reporting directly to the CTO.",
       variants: {
+        manager: {
+          responsibility: "Leadership is about enabling flow: partners directly with the CTO to bridge technical strategy and human execution across a multi-disciplinary department of Cloud/Firmware developers, QA, UX, DevOps, and Architects — transforming external-heavy engineering into resilient internal teams that do more with less."
+        },
         architect: {
           responsibility: "Directs Firmware, Desktop, and Cloud engineering while owning the cross-domain architecture: merging physical hardware and SaaS platforms into one cyber-physical loop, standardizing agent-ready system design (MCP servers, A2A interfaces), and driving ISO 27001 governance — reporting directly to the CTO."
         },
@@ -48,12 +51,13 @@ export const cvData: CVData = {
         { title: "Operational Efficiency", description: "Sustained the entire physical and cloud product portfolio through a corporate restructuring that downsized the team from 17 to 5 FTEs (70% reduction) by standardizing lean processes and AI-assisted execution.", profiles: ['manager'], priority: 1 },
         { title: "Agentic SDLC Strategy", description: "Spearheaded organizational adoption of Agentic Development. Standardized unified frameworks—including AGENTS.md, DESIGN.md, custom Model Context Protocol (MCP) servers, and Agent-to-Agent (A2A) interfaces—optimizing engineering workflows for context engineering to successfully close the automated loop.", profiles: ['manager', 'ai-dev', 'architect'], industries: ['ai'], priority: 1 },
         { title: "Strategic Convergence", description: "Unified firmware and cloud departments to merge physical hardware and SaaS platforms into a seamless cyber-physical loop.", profiles: ['manager', 'architect'], industries: ['firmware-embedded', 'cloud-saas'], priority: 2 },
-        { title: "Governance & Security", description: "Spearheaded the ISO 27001 compliance and certification process across both departments.", profiles: ['manager', 'architect'], priority: 3 }
+        { title: "Governance & Security", description: "Spearheaded the ISO 27001 compliance and certification process across both departments.", profiles: ['manager', 'architect'], priority: 3 },
+        { title: "Resilient Team Building", description: "Fosters and grows healthy internal teams where people feel safe and develop individually and as a team — transforming external-heavy engineering into resilient in-house capability.", profiles: ['manager'], priority: 4 }
       ],
       engineeringHighlights: [
         { title: "Hands-on Multi-Domain Coding", description: "Function as an active player-coach across the Firmware, Desktop, and Cloud boundaries, directly committing high-performance C++ and Python code, performance optimizations, and DevOps CI/CD pipelines.", profiles: ['senior-dev', 'manager'], priority: 1 },
         { title: "Agentic-Ready Architecture", description: "Re-architected codebases and testing systems with modular design patterns that enable autonomous AI agents to interact directly with low-level physical and logical interfaces (Oscilloscopes, J-Link debug probes, system-level D-Bus, and headless browsers) for closed-loop, automated HIL testing.", profiles: ['architect', 'ai-dev', 'senior-dev'], industries: ['ai', 'firmware-embedded'], priority: 1 },
-        { title: "AI Translation Agent", description: "Developed a GraphRAG and LLM-powered translation agent in CI/CD, saving €25k annually in localization costs.", profiles: ['ai-dev', 'senior-dev'], industries: ['ai'], priority: 2 }
+        { title: "AI Translation Agent", description: "Developed a GraphRAG and LLM-powered translation agent in CI/CD, saving roughly €22k annually in external localization services.", profiles: ['ai-dev', 'senior-dev'], industries: ['ai'], priority: 2 }
       ],
       techStack: ["Firmware", "Cloud", "Desktop", "C++", "Python", "Agentic Workflows", "Context Engineering", "HIL Testing", "MCP", "A2A", "J-Link", "D-Bus", "Oscilloscope", "ISO 27001", "Neo4j", "DevOps"]
     },
@@ -73,8 +77,10 @@ export const cvData: CVData = {
         }
       },
       leadershipHighlights: [
+        { title: "Executive Crisis Resolution", description: "Defused a critical GCP billing conflict representing a €1M+ financial risk: partnered with DevOps on a mitigation strategy and successfully executed the migration after presenting it to the CEO and CTO.", profiles: ['manager', 'architect'], industries: ['cloud-saas'], priority: 1 },
         { title: "Operational Cost Optimization", description: "Slashed external consulting overhead by €39k/month by strategically insourcing external cloud development and establishing an agile in-house cloud engineering capability.", profiles: ['manager'], priority: 1 },
-        { title: "Merger Integration", description: "Orchestrated post-merger decoupling of MakerBot and UltiMaker systems while maintaining 100% production uptime.", profiles: ['manager', 'architect'], priority: 2 }
+        { title: "Merger Integration", description: "Orchestrated post-merger decoupling of MakerBot and UltiMaker systems while maintaining 100% production uptime.", profiles: ['manager', 'architect'], priority: 2 },
+        { title: "Vendor Management", description: "Managed contract negotiations with external partners to prepare the organization for the strategic insourcing initiatives.", profiles: ['manager'], priority: 3 }
       ],
       engineeringHighlights: [
         { title: "AI-Driven Cloud", description: "Pioneered integration of LLM agents (UltiBot) and Neo4j Knowledge Graphs into cloud stacks via Model Context Protocols.", profiles: ['ai-dev', 'architect'], industries: ['ai', 'cloud-saas'], priority: 1 },
@@ -94,7 +100,7 @@ export const cvData: CVData = {
       responsibility: "Led a 5-FTE team overseeing Cura Desktop and Cura Cloud software development. Spearheaded strategic agile transformations and key feature alignment.",
       leadershipHighlights: [
         { title: "Strategic Insourcing", description: "Built a high-performing Netherlands engineering team by insourcing critical product capabilities from the US.", profiles: ['manager'], priority: 1 },
-        { title: "Risk Mitigation", description: "De-risked major product releases by resolving high-exposure open-source licensing and compliance vulnerabilities.", profiles: ['manager', 'architect'], priority: 2 }
+        { title: "Risk Mitigation", description: "De-risked and unblocked major product launches by resolving high-exposure open-source licensing and compliance issues (OpenSSL, Qt libraries).", profiles: ['manager', 'architect'], priority: 2 }
       ],
       engineeringHighlights: [
         { title: "Serverless WASM Compilation", description: "Co-authored compiling the core C++ slicer engine to WebAssembly, eliminating backend cloud GPU dependencies and saving €1.5M in annual infrastructure costs.", priority: 1 }
@@ -132,7 +138,7 @@ export const cvData: CVData = {
       responsibility: "Responsible for research, mathematical modeling, and software tool development to analyze extrusion flow and thermodynamics in additive manufacturing.",
       engineeringHighlights: [
         { title: "Flow Computer Vision (PIV)", description: "Developed high-speed Particle Image Velocimetry (PIV) computer vision algorithms and physical test setups in C++ and OpenCV to analyze and visualize fluid extrusion flow in real time.", profiles: ['senior-dev', 'ai-dev'], priority: 1 },
-        { title: "FLIR Thermal Analysis", description: "Created real-time thermographic analysis algorithms in Python to inspect hotend heat distribution and fluid boundaries, validating safety and processing margins.", profiles: ['senior-dev', 'ai-dev'], priority: 2 },
+        { title: "FLIR Thermal Analysis", description: "Created real-time thermographic analysis algorithms in Python (FLIR ResearchIR) to inspect hotend heat distribution and fluid boundaries, validating safety and processing margins.", profiles: ['senior-dev', 'ai-dev'], priority: 2 },
         { title: "Mathematical Modeling", description: "Created physical and thermal extrusion flow models in OpenModelica and Python to mathematically predict fluid process parameters and optimize deposition geometry.", profiles: ['senior-dev'], priority: 3 }
       ],
       techStack: ["C++", "Python", "OpenCV", "OpenModelica", "Thermography", "Mechatronics", "Mathematical Modeling", "Data Visualization", "Linux"]
@@ -164,7 +170,7 @@ export const cvData: CVData = {
       industries: ['maritime', 'firmware-embedded', 'ai'],
       responsibility: "Conducted core software development, robotics, and hardware-software research within Royal IHC's central R&D institute.",
       engineeringHighlights: [
-        { title: "Soil Machine Vision Microscope", description: "Independently designed and developed an automated soil analysis microscope backed by an 8,000-line C++ codebase. Implemented advanced image processing (Fast Fourier Transforms, OpenCV) and neural network algorithms (ANN, GA) to classify sand sample shape and grain angularity.", profiles: ['senior-dev', 'ai-dev'], priority: 1 },
+        { title: "Soil Machine Vision Microscope", description: "Independently designed and developed an automated soil analysis microscope backed by an 8,000-line C++ codebase. Implemented advanced image processing (Fast Fourier Transforms, OpenCV) and neural network algorithms (ANN, GA) to classify sand sample shape and grain angularity. Featured in 'Kompas' magazine.", profiles: ['senior-dev', 'ai-dev'], priority: 1 },
         { title: "AUV Autonomy Framework", description: "Authored a real-time C++ control framework for rapid prototyping and deployment of autonomous underwater vehicles (AUVs) on embedded Linux and RTOS.", profiles: ['senior-dev', 'architect'], industries: ['maritime', 'firmware-embedded'], priority: 2 },
         { title: "Scientific Python Library", description: "Collaborated to create 'MTIpython', an internal Python library for advanced engineering calculations, unit-safe physical computations, and LaTeX-generated reports.", profiles: ['senior-dev'], priority: 3 },
         { title: "Test Controller Design", description: "Designed and implemented a real-time C++ test controller and data acquisition script for a slurry-based geopolymer test plant.", profiles: ['senior-dev'], priority: 4 },
@@ -185,8 +191,9 @@ export const cvData: CVData = {
         { title: "Maritime Piping & LNG P&ID", description: "Designed complex Piping & Instrumentation Diagrams (P&IDs) for LNG (Liquefied Natural Gas), jetwater, bilge, and ballast systems on seagoing vessels adhering to strict Bureau Veritas, Lloyd's Register, and CCS classification societies.", priority: 1 },
         { title: "Boskalis 'SIDUS' CSD", description: "Executed detailed mechanical engineering and pipeline routing of the thermal oil heating systems for the 23,684kW Boskalis Sidus Cutter Suction Dredger, one of the world's largest.", priority: 2 },
         { title: "CFD Simulation", description: "Designed complex sea-water filtration installations and performed intensive Computational Fluid Dynamics (CFD) simulations in Siemens NX to optimize performance and flow mechanics.", priority: 3 },
-        { title: "Deme 'Minerva' & 'Scheldt River'", description: "Coordinated P&ID design for the first low-emission dual-fuel LNG dredging vessels in Deme's fleet.", priority: 4 },
-        { title: "Standardization", description: "Collaborated to formulate the shipyard-wide Valve, Instrument and Piping guide (VIP) implemented across multiple global IHC shipyards.", priority: 5 }
+        { title: "Deme 'Minerva' & 'Scheldt River'", description: "Coordinated LNG P&ID design for the first low-emission dual-fuel LNG dredging vessels in Deme's fleet — the 3,000m³ 'Minerva' and 7,950m³ 'Scheldt River' trailing suction hopper dredgers.", priority: 4 },
+        { title: "Standardization", description: "Collaborated to formulate the shipyard-wide Valve, Instrument and Piping guide (VIP) implemented across multiple global IHC shipyards.", priority: 5 },
+        { title: "Flagship Vessel Portfolio", description: "Engineered systems across flagship builds: the 5,500m³ TNPA 'ILEMBE' TSHD (jetwater, bilge & ballast P&IDs with optimized header routing), the largest TSHD Royal IHC ever produced for CCCC Guangzhou Dredging ('Jun Yang 1' — emergency generator arrangement and raw seawater filters), and the 23,545kW Huta 'AL BAHAR' CSD (engine-room system routing).", priority: 6 }
       ],
       techStack: ["Piping Design", "P&ID", "CFD Simulation", "Siemens NX", "Bureau Veritas", "LNG Systems", "Dredging Equipment", "Standardization"]
     },
@@ -226,7 +233,7 @@ export const cvData: CVData = {
       profiles: [],
       industries: ['manufacturing'],
       engineeringHighlights: [
-        { title: "Precision Manufacturing", description: "Began career optimizing metal extrusion dies on the shop floor. Fine-tuned geometry for massive 2500-to-5500 MT industrial presses, reducing material waste and overcoming thermal effects." }
+        { title: "Precision Manufacturing", description: "Began career optimizing metal extrusion dies on the shop floor. Fine-tuned die geometry (150–900mm diameter, including 7003/7020/7108 alloys) for massive 2500, 4000, and 5500 MT industrial presses — reducing knock-off, billet-on-billet effects, and material waste while optimizing extrusion speed." }
       ],
       techStack: ["Metallurgy", "Die Correction", "Extrusion Presses", "Precision Manufacturing"]
     },
@@ -422,6 +429,18 @@ export const cvData: CVData = {
       profiles: [],
       industries: ['maritime'],
       priority: 8
+    },
+    {
+      name: "Conan Essentials & Introduction to Conan",
+      issuer: "JFrog Academy",
+      profiles: ['senior-dev'],
+      priority: 5
+    },
+    {
+      name: "FLIR Advanced Thermography Training",
+      issuer: "FLIR",
+      profiles: ['senior-dev', 'ai-dev'],
+      priority: 6
     }
   ],
   skills: [
@@ -436,7 +455,7 @@ export const cvData: CVData = {
     {
       category: "Cloud & DevOps",
       industries: ['cloud-saas'],
-      items: ["GCP (CloudRun, VertexAI)", "Docker", "GitHub Actions", "Conan", "CI/CD Code Signing", "MongoDB"]
+      items: ["GCP (CloudRun, VertexAI)", "Docker", "GitHub Actions", "Conan", "JFrog Artifactory", "CI/CD Code Signing", "MongoDB"]
     },
     {
       category: "Web & High-Performance Web",
@@ -446,12 +465,17 @@ export const cvData: CVData = {
     {
       category: "AI & Data Engineering",
       industries: ['ai'],
-      items: ["Model Context Protocol (MCP)", "LangGraph", "LangChain", "Neo4j Graph Database", "GraphRAG", "LLM Fine-tuning"]
+      items: ["Model Context Protocol (MCP)", "A2A", "LangGraph", "LangChain", "Neo4j / Cypher", "GraphRAG", "Text Embeddings", "Vertex AI", "Prompt-Driven Design (PDD)", "LLM Fine-tuning"]
     },
     {
       category: "Systems & Embedded",
       industries: ['firmware-embedded'],
       items: ["Embedded Linux / RTOS", "Qt / QML", "Device Tree Overlays", "D-Bus", "Cross-Compilers (ARM/Intel)"]
+    },
+    {
+      category: "Mechanical & Manufacturing",
+      industries: ['maritime', 'manufacturing'],
+      items: ["Siemens NX (CAD/CFD)", "SolidWorks", "AutoCAD", "Cadmatic", "P&ID / Piping Design", "Lean / QRM", "Metallurgy & Extrusion"]
     }
   ],
   volunteer: [
@@ -469,7 +493,7 @@ export const cvData: CVData = {
       period: "2020 – Present",
       profiles: ['manager'],
       priority: 2,
-      description: "Regularly advise and consult on the Mechanical Engineering curriculum to align course topics with modern industrial software and automation needs."
+      description: "Regularly advise and consult on the Mechanical Engineering and Embedded Systems Engineering curricula to align course topics with modern industrial software and automation needs."
     },
     {
       role: "Home Automation Developer",
@@ -490,6 +514,15 @@ export const cvData: CVData = {
     }
   ],
   projects: [
+    {
+      name: "ultiagents",
+      role: "Creator",
+      description: "An agentic development swarm taking features from idea to production-ready code through clearly staged phases: Prompt-Driven Design (PDD), Standard Operating Procedures (SOPs), security-by-design, and human-like validation & verification — orchestrating Gemini, OpenAI, and Claude agents.",
+      profiles: ['ai-dev', 'architect', 'manager'],
+      industries: ['ai'],
+      priority: 1,
+      tech: ["AI Agents", "Prompt-Driven Design (PDD)", "SOPs", "Gemini", "OpenAI", "Claude", "Security-by-Design"]
+    },
     {
       name: "ArchGraph-AI",
       role: "Creator",
@@ -513,11 +546,20 @@ export const cvData: CVData = {
     {
       name: "Generic Autonomous (Under-)water vehicle Library C++",
       role: "Creator (Royal IHC)",
-      description: "A hardware-independent C++ library for autonomous surface and underwater vehicle control. Implemented advanced Coverage Path Planning (CPP), sensor fusion, and Unscented Kalman Filtering (UKF) deployed on BeagleBone Black and Raspberry Pi.",
+      description: "A hardware-independent C++ library for autonomous surface and underwater vehicle control. Implemented advanced Coverage Path Planning (CPP), sensor fusion, and Unscented Kalman Filtering (UKF) on BeagleBone Black, Raspberry Pi, and x86_64 — deployed on an autonomous measurement catamaran and the Archimedes-screw dredge bot.",
       profiles: ['senior-dev', 'architect'],
       industries: ['maritime', 'firmware-embedded'],
       priority: 4,
       tech: ["C++", "Eigen3", "Boost", "Kalman Filtering", "Coverage Path Planning", "SBC", "Embedded Linux"]
+    },
+    {
+      name: "GHermeneus",
+      role: "Creator",
+      description: "A fast GCode interpreter: lexing, parsing, and building an Abstract Syntax Tree from GCode, emitting a state-space representation after each command.",
+      profiles: ['senior-dev'],
+      industries: ['manufacturing'],
+      priority: 8,
+      tech: ["C++", "Parsing", "AST", "GCode"]
     },
     {
       name: "Autonomous Dredge Bot",
@@ -540,14 +582,41 @@ export const cvData: CVData = {
       tech: ["Python", "Jupyter", "Hardy-Cross Solver", "Bingham Slurry", "Soil Mechanics", "LaTeX"]
     },
     {
-      name: "UltiMaker Cura Cloud",
+      name: "Neoprep (UltiMaker Cura Cloud)",
       role: "Product Lead",
-      description: "Led development of a serverless 3D slicing engine processing 100k slices/month in-browser via high-performance WebAssembly, eliminating backend GPU infrastructure dependencies.",
+      description: "Led development of Neoprep, the cloud slicer based on Cura and CuraEngine: a serverless 3D slicing engine processing 100k slices/month in-browser via high-performance WebAssembly, eliminating backend GPU infrastructure dependencies.",
       link: "https://neoprep.staging.ultimaker.com/",
       profiles: ['architect', 'manager', 'senior-dev'],
       industries: ['cloud-saas', 'manufacturing'],
       priority: 1,
       tech: ["WASM", "ThreeJS", "C++"]
+    },
+    {
+      name: "Curator",
+      role: "Creator",
+      description: "A manager for the profiles and definitions used by Cura, written in modern C++23 with JavaScript (WASM) bindings and future Python bindings.",
+      profiles: ['senior-dev', 'architect'],
+      industries: ['manufacturing', 'cloud-saas'],
+      priority: 3,
+      tech: ["C++23", "WebAssembly", "JS Bindings", "Cura"]
+    },
+    {
+      name: "UltiBot",
+      role: "Creator",
+      description: "A 3D-printing AI agent embedded into the Cura Cloud solution, connecting LLM reasoning to the printing workflow via A2A and Model Context Protocol interfaces.",
+      profiles: ['ai-dev'],
+      industries: ['ai', 'cloud-saas'],
+      priority: 2,
+      tech: ["AI Agents", "A2A", "MCP", "LangGraph", "Vertex AI", "3D Printing"]
+    },
+    {
+      name: "printer-linter",
+      role: "Creator",
+      description: "An automated linting and code-review bot for Cura printer definitions that posts comments and fix suggestions on community pull requests — responsible for a 300% increase in printers added to the following Cura release.",
+      profiles: ['senior-dev', 'ai-dev', 'manager'],
+      industries: ['manufacturing'],
+      priority: 5,
+      tech: ["Python", "Automated Code Review", "GitHub Actions", "Open Source"]
     },
     {
       name: "UltiMaker Cura",
@@ -636,7 +705,7 @@ export const cvData: CVData = {
       tech: ["CLI Systems", "GitHub Packages", "Context Engineering", "copilot-instructions", "NodeJS"]
     },
     {
-      name: "UltiMaker Cura Cloud",
+      name: "Neoprep (UltiMaker Cura Cloud)",
       description: "Designed a serverless, browser-based slicing engine using WebAssembly (WASM) to eliminate heavy backend slicing infrastructure.",
       profiles: ['architect', 'senior-dev'],
       industries: ['cloud-saas', 'manufacturing'],
