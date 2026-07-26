@@ -152,7 +152,8 @@ export const cvData: CVData = {
       location: "Rotterdam, Netherlands",
       period: "September 2017 – April 2019",
       profiles: [],
-      industries: ['maritime', 'manufacturing'],
+      industries: ['maritime', 'manufacturing', 'royal-ihc'],
+      anchor: true,
       responsibility: "Led engineering initiatives in a newly formed Royal IHC business unit specializing in the processing and handling of geopolymers.",
       engineeringHighlights: [
         { title: "Industrial Oven Design", description: "Designed and developed an automated flash-calcination kiln for kaolin clay particles, integrating thermal sensors and control loops.", priority: 1 },
@@ -167,7 +168,8 @@ export const cvData: CVData = {
       location: "Delft, Netherlands",
       period: "April 2016 – September 2017",
       profiles: ['senior-dev', 'ai-dev'],
-      industries: ['maritime', 'firmware-embedded', 'ai'],
+      industries: ['maritime', 'firmware-embedded', 'ai', 'royal-ihc'],
+      anchor: true,
       responsibility: "Conducted core software development, robotics, and hardware-software research within Royal IHC's central R&D institute.",
       engineeringHighlights: [
         { title: "Soil Machine Vision Microscope", description: "Independently designed and developed an automated soil analysis microscope backed by an 8,000-line C++ codebase. Implemented advanced image processing (Fast Fourier Transforms, OpenCV) and neural network algorithms (ANN, GA) to classify sand sample shape and grain angularity. Featured in 'Kompas' magazine.", profiles: ['senior-dev', 'ai-dev'], priority: 1 },
@@ -185,7 +187,8 @@ export const cvData: CVData = {
       location: "Kinderdijk, Netherlands",
       period: "April 2013 – March 2016",
       profiles: [],
-      industries: ['maritime'],
+      industries: ['maritime', 'royal-ihc'],
+      anchor: true,
       responsibility: "Responsible for mechanical design, P&ID design, and system-level engineering for trailing suction hopper dredgers (TSHD), cutter suction dredgers (CSD), and specialized vessels.",
       engineeringHighlights: [
         { title: "Maritime Piping & LNG P&ID", description: "Designed complex Piping & Instrumentation Diagrams (P&IDs) for LNG (Liquefied Natural Gas), jetwater, bilge, and ballast systems on seagoing vessels adhering to strict Bureau Veritas, Lloyd's Register, and CCS classification societies.", priority: 1 },
@@ -204,7 +207,8 @@ export const cvData: CVData = {
       location: "The Randstad, Netherlands",
       period: "April 2013 – March 2014",
       profiles: [],
-      industries: ['maritime'],
+      industries: ['maritime', 'royal-ihc'],
+      anchor: true,
       responsibility: "Contract engineer for IHC Merwede Dredging executing detailed engineering for heavy dredging equipment.",
       engineeringHighlights: [
         { title: "Mechanical Layouts", description: "Engineered high-load mechanical installations and routed pipelines for shipboard installations." },
@@ -601,7 +605,7 @@ export const cvData: CVData = {
       role: "Creator (Royal IHC)",
       description: "A hardware-independent C++ library for autonomous surface and underwater vehicle control. Implemented advanced Coverage Path Planning (CPP), sensor fusion, and Unscented Kalman Filtering (UKF) on BeagleBone Black, Raspberry Pi, and x86_64 — deployed on an autonomous measurement catamaran and the Archimedes-screw dredge bot.",
       profiles: ['senior-dev', 'architect'],
-      industries: ['maritime', 'firmware-embedded'],
+      industries: ['maritime', 'firmware-embedded', 'royal-ihc'],
       priority: 4,
       tech: ["C++", "Eigen3", "Boost", "Kalman Filtering", "Coverage Path Planning", "SBC", "Embedded Linux"]
     },
@@ -620,7 +624,7 @@ export const cvData: CVData = {
       description: "Designed and developed an Archimedes-screw propelled autonomous dredging bot operating in dynamic, unknown maritime environments. Deployed a generic, custom C++ autonomous marine controller framework on embedded single-board computer clusters.",
       link: "https://github.com/jellespijker/HAN-thesis",
       profiles: ['senior-dev'],
-      industries: ['maritime', 'firmware-embedded'],
+      industries: ['maritime', 'firmware-embedded', 'royal-ihc'],
       priority: 5,
       tech: ["C++", "SBC Clusters", "Robot Control", "Archimedes Screw", "Sensor Fusion", "Project Chrono"]
     },
@@ -630,7 +634,7 @@ export const cvData: CVData = {
       description: "A unit-safe Python library for mechanical, fluid, and thermal calculations. Implemented fluid flow network solvers (Hardy-Cross, Newton-Raphson), Bingham slurry solver, soil mechanics algorithms (Verruijt/Miedema), and automatic LaTeX report generators.",
       link: "https://gitlab.com/MTIpython/MTIpython",
       profiles: ['senior-dev'],
-      industries: ['maritime'],
+      industries: ['maritime', 'royal-ihc'],
       priority: 6,
       tech: ["Python", "Jupyter", "Hardy-Cross Solver", "Bingham Slurry", "Soil Mechanics", "LaTeX"]
     },
@@ -743,7 +747,7 @@ export const cvData: CVData = {
       role: "Creator (Royal IHC)",
       description: "Engineered an automated hardware-software soil analysis system powered by a high-performance 8,000-line C++ computer vision engine.",
       profiles: ['ai-dev', 'senior-dev'],
-      industries: ['maritime', 'ai'],
+      industries: ['maritime', 'ai', 'royal-ihc'],
       priority: 3,
       tech: ["OpenCV", "C++", "Mechatronics"]
     }

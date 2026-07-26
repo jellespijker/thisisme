@@ -88,7 +88,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filter, onProfileChange, onIndust
           <span className="text-xs font-bold uppercase tracking-wider text-medido-purple/50 mr-1 shrink-0">
             Industry
           </span>
-          {INDUSTRIES.map(ind => {
+          {INDUSTRIES.filter(ind => !ind.hidden).map(ind => {
             const active = filter.industries.includes(ind.id);
             return (
               <button

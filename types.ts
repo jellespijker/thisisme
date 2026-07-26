@@ -4,8 +4,14 @@
  */
 export type FunctionProfileId = 'all' | 'architect' | 'manager' | 'senior-dev' | 'ai-dev';
 
-/** Industry domains a reader can filter the CV on. */
-export type IndustryId = 'cloud-saas' | 'ai' | 'firmware-embedded' | 'maritime' | 'manufacturing';
+/**
+ * Industry domains a reader can filter the CV on.
+ * `royal-ihc` is a HIDDEN domain: it is never rendered as an industry chip and
+ * is only reachable through the secret `?ihc` / `?royalihc` URL (see the
+ * spotlight handling in utils/filtering.ts). It tags the Royal IHC roles and
+ * projects that the hidden view surfaces and promotes.
+ */
+export type IndustryId = 'cloud-saas' | 'ai' | 'firmware-embedded' | 'maritime' | 'manufacturing' | 'royal-ihc';
 
 /**
  * Presentation metadata attached to CV entries. Tags never change the facts of
@@ -17,6 +23,14 @@ export interface Tagged {
   industries?: IndustryId[];
   /** Lower = shown earlier / kept longer when space is constrained (print). */
   priority?: number;
+  /**
+   * Keep this entry fully expanded whenever ONE of its `industries` is
+   * explicitly selected, even if the active function profile would otherwise
+   * compact it (e.g. a maritime dredging role under the Software Architect
+   * lens). Reserved for domain-defining roles a domain recruiter must see in
+   * full under any persona — never changes the facts, only their emphasis.
+   */
+  anchor?: boolean;
 }
 
 /**
@@ -42,6 +56,8 @@ export interface FunctionProfile {
 export interface Industry {
   id: IndustryId;
   label: string;
+  /** Hidden industries are never rendered as filter chips (secret-URL only). */
+  hidden?: boolean;
 }
 
 export interface ContactInfo {

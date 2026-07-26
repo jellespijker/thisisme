@@ -15,16 +15,27 @@ import {
 } from '../types';
 import { getProfile } from '../profiles';
 
+/**
+ * A "spotlight" is a hidden emphasis mode reachable only via a secret URL (it
+ * has no filter chip). It layers on top of a normal profile/industry filter:
+ * it force-expands the entries tagged with the spotlight industry and promotes
+ * the matching projects to the top — without hiding the rest of the profile's
+ * content the way a hard industry filter would.
+ */
+export type SpotlightId = 'royal-ihc';
+
 export interface FilterState {
   profile: FunctionProfileId;
   industries: IndustryId[];
+  /** Active hidden spotlight, if any (secret-URL only — never a chip). */
+  spotlight?: SpotlightId;
 }
 
 export const DEFAULT_FILTER: FilterState = { profile: 'all', industries: [] };
 
 /** A filter is "focused" when the reader narrowed the CV down in any way. */
 export const isFocused = (state: FilterState): boolean =>
-  state.profile !== 'all' || state.industries.length > 0;
+  state.profile !== 'all' || state.industries.length > 0 || state.spotlight != null;
 
 /**
  * Tag semantics:
@@ -41,6 +52,28 @@ const matchesIndustries = (t: Tagged, industries: IndustryId[]): boolean =>
 
 export const matches = (t: Tagged, state: FilterState): boolean =>
   matchesProfile(t, state.profile) && matchesIndustries(t, state.industries);
+
+/**
+ * An `anchor`ed entry stays fully expanded when the reader explicitly selects
+ * one of its industries, even if the active function profile would compact it.
+ * This is what keeps the Royal IHC maritime roles full under `?architect&maritime`
+ * (they carry `profiles: []`, so a profile filter alone would condense them).
+ */
+const anchoredToSelectedIndustry = (t: Tagged, industries: IndustryId[]): boolean =>
+  !!t.anchor && !!t.industries?.some(i => industries.includes(i));
+
+/** True when a hidden spotlight is active and this entry carries its industry tag. */
+const inSpotlight = (t: Tagged, spotlight?: SpotlightId): boolean =>
+  spotlight != null && !!t.industries?.includes(spotlight);
+
+/**
+ * An entry is surfaced by industry (rather than by the function profile) when
+ * it is anchored to a selected industry or lit by the active spotlight. Such an
+ * entry is shown in full and its bullets are filtered by industry only — the
+ * non-matching function profile must not gut its domain content.
+ */
+const surfacedByIndustry = (t: Tagged, state: FilterState): boolean =>
+  anchoredToSelectedIndustry(t, state.industries) || inSpotlight(t, state.spotlight);
 
 const byPriority = <T extends Tagged>(a: T, b: T): number =>
   (a.priority ?? 99) - (b.priority ?? 99);
@@ -89,15 +122,24 @@ export interface DerivedCV {
  */
 const PRINT_CAPS = {
   /** Combined highlight count per role, by how recent the role is (role.priority). */
-  highlightsForRole: (role: JobRole): number => {
+  highlightsForRole: (role: JobRole, state: FilterState): number => {
+    // The Royal IHC spotlight prints four extra full roles, so every role is
+    // trimmed to its top two bullets to stay inside the 3-page A4 budget.
+    if (state.spotlight != null) return 2;
     const p = role.priority ?? 9;
     if (p <= 2) return 4;
     if (p <= 4) return 3;
     return 2;
   },
   projects: 4,
-  /** The dedicated architecture section only earns print space on the architect CV. */
-  architecture: (profile: FunctionProfileId): number => (profile === 'architect' ? 2 : 0),
+  /**
+   * The dedicated architecture section only earns print space on the architect
+   * CV — and yields it entirely under the Royal IHC spotlight, whose extra
+   * full experience roles need the room and whose story is carried by the
+   * promoted Royal IHC projects instead.
+   */
+  architecture: (state: FilterState): number =>
+    state.spotlight == null && state.profile === 'architect' ? 2 : 0,
   /** Volunteering earns print space only on the manager CV (Works Council story). */
   volunteer: (profile: FunctionProfileId): number => (profile === 'manager' ? 2 : 0),
   /** Recommendations stay on the interactive CV; paper space goes to experience. */
@@ -110,12 +152,19 @@ const PRINT_CAPS = {
 };
 
 const deriveRole = (role: JobRole, state: FilterState, focused: boolean): DerivedRole => {
-  const mode: RoleRenderMode = focused && !matches(role, state) ? 'compact' : 'full';
+  // A role surfaced by industry/spotlight stays full even when the profile
+  // doesn't match; its bullets are then filtered by industry only.
+  const industrySurfaced = surfacedByIndustry(role, state);
+  const mode: RoleRenderMode =
+    focused && !matches(role, state) && !industrySurfaced ? 'compact' : 'full';
+
+  const keepPoint = (p: ExperiencePoint): boolean =>
+    industrySurfaced ? matchesIndustries(p, state.industries) : matches(p, state);
 
   const prepare = (points?: ExperiencePoint[]): ExperiencePoint[] => {
     if (!points || mode === 'compact') return [];
     if (!focused) return points;
-    const kept = points.filter(p => matches(p, state));
+    const kept = points.filter(keepPoint);
     return kept.sort(byPriority);
   };
 
@@ -124,7 +173,7 @@ const deriveRole = (role: JobRole, state: FilterState, focused: boolean): Derive
   const generic = prepare(role.highlights);
 
   // The combined print cap is spent on leadership first (they are rendered first).
-  const cap = PRINT_CAPS.highlightsForRole(role);
+  const cap = PRINT_CAPS.highlightsForRole(role, state);
   const leadershipTrimmed = trimForPrint(leadership, cap, focused);
   const remainingCap = Math.max(0, cap - Math.min(leadership.length, cap));
   const engineeringTrimmed = trimForPrint(engineering, remainingCap, focused);
@@ -183,6 +232,19 @@ export const deriveCV = (data: CVData, state: FilterState): DerivedCV => {
     return focused ? [...kept].sort(byPriority) : kept;
   };
 
+  /**
+   * Under a hidden spotlight, pull every spotlight-tagged item to the front
+   * (in priority order) — including ones the active profile filtered out — so
+   * the Royal IHC projects lead ahead of the UltiMaker/AI work, then the rest
+   * of the profile's projects follow.
+   */
+  const spotlightFirst = <T extends Tagged>(items: T[], base: T[]): T[] => {
+    if (state.spotlight == null) return base;
+    const spotlit = items.filter(i => inSpotlight(i, state.spotlight)).sort(byPriority);
+    const lit = new Set(spotlit);
+    return [...spotlit, ...base.filter(i => !lit.has(i))];
+  };
+
   const certifications = filterSort(data.certifications).map((cert, idx) => ({
     cert,
     printHidden: focused && idx >= PRINT_CAPS.certifications,
@@ -198,8 +260,8 @@ export const deriveCV = (data: CVData, state: FilterState): DerivedCV => {
     education,
     certifications,
     volunteer: trimForPrint(filterSort(data.volunteer), PRINT_CAPS.volunteer(state.profile), focused),
-    projects: trimForPrint(filterSort(data.projects), PRINT_CAPS.projects, focused),
-    architecture: trimForPrint(filterSort(data.architecture), PRINT_CAPS.architecture(state.profile), focused),
+    projects: trimForPrint(spotlightFirst(data.projects, filterSort(data.projects)), PRINT_CAPS.projects, focused),
+    architecture: trimForPrint(filterSort(data.architecture), PRINT_CAPS.architecture(state), focused),
     recommendations: trimForPrint(filterSort(data.recommendations), PRINT_CAPS.recommendations, focused),
   };
 };
@@ -231,16 +293,31 @@ const INDUSTRY_ALIASES: Record<string, IndustryId> = {
   'maritime': 'maritime', 'dredging': 'maritime', 'offshore': 'maritime', 'shipbuilding': 'maritime',
 };
 
+/**
+ * Hidden spotlight tokens. Deliberately NOT in INDUSTRY_ALIASES so `royal-ihc`
+ * never becomes a plain industry filter (which would hide the architect work);
+ * instead it lights the secret Royal IHC view. Reachable only if you know the
+ * URL — there is no chip for it.
+ */
+const SPOTLIGHT_ALIASES: Record<string, SpotlightId> = {
+  'ihc': 'royal-ihc', 'royalihc': 'royal-ihc', 'royal-ihc': 'royal-ihc',
+};
+
 export const filterStateFromUrl = (search: string): FilterState => {
   const params = new URLSearchParams(search);
   let profile: FunctionProfileId = 'all';
+  let profileExplicit = false;
+  let spotlight: SpotlightId | undefined;
   const industries: IndustryId[] = [];
 
   const applyToken = (raw: string): void => {
     const token = raw.trim().toLowerCase();
     if (!token) return;
-    if (token in PROFILE_ALIASES) {
+    if (token in SPOTLIGHT_ALIASES) {
+      spotlight = SPOTLIGHT_ALIASES[token];
+    } else if (token in PROFILE_ALIASES) {
       profile = PROFILE_ALIASES[token];
+      profileExplicit = true;
     } else if (token in INDUSTRY_ALIASES) {
       const id = INDUSTRY_ALIASES[token];
       if (!industries.includes(id)) industries.push(id);
@@ -262,13 +339,24 @@ export const filterStateFromUrl = (search: string): FilterState => {
     }
   });
 
-  return { profile, industries };
+  // The Royal IHC spotlight is a Software Architect view by default, so a bare
+  // `?ihc` link lands on the architect framing unless a profile was named too.
+  if (spotlight === 'royal-ihc' && !profileExplicit) profile = 'architect';
+
+  return { profile, industries, spotlight };
 };
 
-/** Canonical compact form, e.g. "?architect&maritime&ai". */
+/** Canonical compact form, e.g. "?architect&maritime&ai" or the secret "?royalihc". */
 export const filterStateToSearch = (state: FilterState): string => {
   const tokens: string[] = [];
-  if (state.profile !== 'all') tokens.push(state.profile);
+  if (state.spotlight === 'royal-ihc') {
+    tokens.push('royalihc');
+    // `royalihc` already implies the architect view; only emit a profile token
+    // when it diverges from that default.
+    if (state.profile !== 'all' && state.profile !== 'architect') tokens.push(state.profile);
+  } else if (state.profile !== 'all') {
+    tokens.push(state.profile);
+  }
   tokens.push(...state.industries);
   return tokens.length > 0 ? `?${tokens.join('&')}` : '';
 };

@@ -325,6 +325,13 @@ body {
     zoom: 0.67;
   }
 
+  /* The hidden Royal IHC spotlight adds four full Royal IHC roles on top of the
+     Software Architect CV; a touch more density keeps it within the 3-page A4
+     budget. Declared after the .cv-focused rule so it wins (equal specificity). */
+  body:has(.cv-spotlight) {
+    zoom: 0.6;
+  }
+
   /* Per-role and per-project tech chip rows are redundant with the Skills section on paper */
   .cv-focused .experience-item .tech-tags-container,
   .cv-focused .project-card .tech-tags-container {
