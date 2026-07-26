@@ -82,6 +82,9 @@ export const INDUSTRIES: Industry[] = [
   { id: 'firmware-embedded', label: 'Firmware & Embedded' },
   { id: 'manufacturing', label: 'Manufacturing & 3D Printing' },
   { id: 'maritime', label: 'Maritime & Dredging' },
+  // Hidden domain — reachable only via the secret `?ihc` / `?royalihc` URL.
+  // Marked hidden so FilterBar never renders it as a chip.
+  { id: 'royal-ihc', label: 'Royal IHC · Maritime Defense', hidden: true },
 ];
 
 export const getProfile = (id: FunctionProfileId): FunctionProfile =>

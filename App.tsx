@@ -61,8 +61,10 @@ const App: React.FC = () => {
     });
   }, []);
 
+  // Clicking a visible chip exits any hidden spotlight view — the reader is now
+  // driving the public filters, so drop the secret emphasis.
   const handleProfileChange = useCallback(
-    (profile: FunctionProfileId) => updateFilter({ ...filter, profile }),
+    (profile: FunctionProfileId) => updateFilter({ ...filter, profile, spotlight: undefined }),
     [filter, updateFilter]
   );
 
@@ -70,6 +72,7 @@ const App: React.FC = () => {
     (industry: IndustryId) =>
       updateFilter({
         ...filter,
+        spotlight: undefined,
         industries: filter.industries.includes(industry)
           ? filter.industries.filter(i => i !== industry)
           : [...filter.industries, industry],
@@ -90,7 +93,7 @@ const App: React.FC = () => {
   const focused = derived.focused;
 
   return (
-    <div className={`min-h-screen bg-white text-medido-purple selection:bg-medido-peach selection:text-medido-purple ${focused ? 'cv-focused' : ''}`}>
+    <div className={`min-h-screen bg-white text-medido-purple selection:bg-medido-peach selection:text-medido-purple ${focused ? 'cv-focused' : ''} ${filter.spotlight ? 'cv-spotlight' : ''}`}>
       <FilterBar
         filter={filter}
         onProfileChange={handleProfileChange}
