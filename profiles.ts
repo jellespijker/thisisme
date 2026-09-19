@@ -34,13 +34,28 @@ export const FUNCTION_PROFILES: FunctionProfile[] = [
     label: 'Engineering Development Manager',
     pills: ['Engineering Development Manager', 'Player-Coach Leadership', 'Agentic SDLC Champion'],
     summary:
-      "Player-coach Engineering Manager reporting directly to the CTO. Led a 10-FTE multi-disciplinary cloud team and now directs Firmware, Desktop, and Cloud development — sustaining 100% of the product portfolio through a corporate restructuring from 17 down to 5 FTEs by standardizing lean, AI-assisted engineering. Slashed external consulting overhead by €39k/month through strategic insourcing, spearheaded ISO 27001 compliance and certification, and drove organization-wide adoption of an Agentic SDLC. Builds high-performing teams under a coaching-centric, people-first culture — sharpened by two years as Works Council Secretary advising executive management through an international merger.",
+      "Player-coach Engineering Manager reporting directly to the CTO. Led a 10-FTE multi-disciplinary cloud team and now leads the Cloud and Firmware teams, every engineer reporting directly — sustaining 100% of the product portfolio through a corporate restructuring from 17 down to 5 FTEs by standardizing lean, AI-assisted engineering. Slashed external consulting overhead by €39k/month through strategic insourcing, spearheaded ISO 27001 compliance and certification, and drove organization-wide adoption of an Agentic SDLC. Builds high-performing teams under a coaching-centric, people-first culture — sharpened by two years as Works Council Secretary advising executive management through an international merger.",
     skillOrder: [
       'Cloud & DevOps',
       'AI & Data Engineering',
       'Programming Languages',
       'Systems & Embedded',
       'Web & High-Performance Web',
+      'Languages',
+    ],
+  },
+  {
+    id: 'embedded-eng-manager',
+    label: 'Embedded / Cyber-Physical Engineering Manager',
+    pills: ['Engineering Manager', 'Systems \u00b7 Web \u00b7 QA', 'Cyber-Physical Delivery'],
+    summary:
+      "Engineering manager who leads cross-functional teams across the full cyber-physical loop \u2014 embedded firmware on the device, the cloud platform behind it, and the web application in front of it. Leads UltiMaker's Cloud and Firmware teams \u2014 every engineer reporting directly, no leads in between \u2014 reporting to the CTO, after line-managing a 10-FTE team of cloud developers, QA, UX, DevOps and architects. Sustained 100% of the physical and cloud product portfolio and its SLAs through a restructuring from 17 to 5 FTEs by standardizing lean, AI-assisted engineering; cut external consulting overhead by \u20ac39k/month through insourcing; and re-architected test systems so automated agents drive real hardware (oscilloscopes, J-Link probes, D-Bus, headless browsers) in closed-loop HIL testing. Leads as a player-coach who still ships code daily \u2014 through a self-built agentic development stack that delivers features, bug fixes, security fixes and complete brownfield repository ports \u2014 under a coaching-centric culture sharpened by two years as Works Council Secretary advising executive management through an international merger.",
+    skillOrder: [
+      'Systems & Embedded',
+      'Cloud & DevOps',
+      'Web & High-Performance Web',
+      'Programming Languages',
+      'AI & Data Engineering',
       'Languages',
     ],
   },

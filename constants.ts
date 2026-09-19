@@ -29,34 +29,34 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Zaltbommel, Netherlands",
       period: "July 2025 – Present",
-      profiles: ['manager', 'architect', 'senior-dev', 'ai-dev'],
+      profiles: ['manager', 'embedded-eng-manager', 'architect', 'senior-dev', 'ai-dev'],
       industries: ['firmware-embedded', 'cloud-saas', 'ai', 'manufacturing'],
       priority: 1,
-      responsibility: "Directs a high-performing multi-disciplinary department across Firmware, Desktop, and Cloud domains. Championed an Agentic SDLC transformation to sustain 100% product portfolio continuity and strict SLAs through corporate restructuring (scaling from 17 down to 5 FTEs), reporting directly to the CTO.",
+      responsibility: "Leads two teams \u2014 Cloud and Firmware \u2014 with every engineer reporting directly, no leads in between. Championed an Agentic SDLC transformation to sustain 100% product portfolio continuity and strict SLAs through corporate restructuring (scaling from 17 down to 5 FTEs), reporting directly to the CTO.",
       variants: {
         manager: {
-          responsibility: "Leadership is about enabling flow: partners directly with the CTO to bridge technical strategy and human execution across a multi-disciplinary department of Cloud/Firmware developers, QA, UX, DevOps, and Architects — transforming external-heavy engineering into resilient internal teams that do more with less."
+          responsibility: "Leadership is about enabling flow: partners directly with the CTO to bridge technical strategy and human execution across two directly-reporting teams spanning Cloud and Firmware development, QA, UX, DevOps, and architecture — transforming external-heavy engineering into resilient internal teams that do more with less."
         },
         architect: {
-          responsibility: "Directs Firmware, Desktop, and Cloud engineering while owning the cross-domain architecture: merging physical hardware and SaaS platforms into one cyber-physical loop, standardizing agent-ready system design (MCP servers, A2A interfaces), and driving ISO 27001 governance — reporting directly to the CTO."
+          responsibility: "Leads the Cloud and Firmware teams while owning the cross-domain architecture: merging physical hardware and SaaS platforms into one cyber-physical loop, standardizing agent-ready system design (MCP servers, A2A interfaces), and driving ISO 27001 governance — reporting directly to the CTO."
         },
         'senior-dev': {
-          responsibility: "Player-coach lead of the Firmware, Desktop, and Cloud department — still committing high-performance C++ and Python daily, alongside performance optimizations and DevOps CI/CD pipeline work — while sustaining 100% product portfolio continuity and strict SLAs, reporting directly to the CTO."
+          responsibility: "Player-coach lead of the Cloud and Firmware teams — still shipping code daily through a self-built agentic development stack (features, bug fixes, security fixes, performance optimizations and DevOps CI/CD pipeline work in C++ and Python) — while sustaining 100% product portfolio continuity and strict SLAs, reporting directly to the CTO."
         },
         'ai-dev': {
-          responsibility: "Directs Firmware, Desktop, and Cloud development while personally driving the organization's Agentic SDLC transformation — standardized AGENTS.md/DESIGN.md frameworks, custom Model Context Protocol (MCP) servers, and Agent-to-Agent (A2A) interfaces — reporting directly to the CTO."
+          responsibility: "Leads the Cloud and Firmware teams while personally driving the organization's Agentic SDLC transformation — standardized AGENTS.md/DESIGN.md frameworks, custom Model Context Protocol (MCP) servers, and Agent-to-Agent (A2A) interfaces — reporting directly to the CTO."
         }
       },
       leadershipHighlights: [
-        { title: "Operational Efficiency", description: "Sustained the entire physical and cloud product portfolio through a corporate restructuring that downsized the team from 17 to 5 FTEs (70% reduction) by standardizing lean processes and AI-assisted execution.", profiles: ['manager'], priority: 1 },
-        { title: "Agentic SDLC Strategy", description: "Spearheaded organizational adoption of Agentic Development. Standardized unified frameworks—including AGENTS.md, DESIGN.md, custom Model Context Protocol (MCP) servers, and Agent-to-Agent (A2A) interfaces—optimizing engineering workflows for context engineering to successfully close the automated loop.", profiles: ['manager', 'ai-dev', 'architect'], industries: ['ai'], priority: 1 },
-        { title: "Strategic Convergence", description: "Unified firmware and cloud departments to merge physical hardware and SaaS platforms into a seamless cyber-physical loop.", profiles: ['manager', 'architect'], industries: ['firmware-embedded', 'cloud-saas'], priority: 2 },
-        { title: "Governance & Security", description: "Spearheaded the ISO 27001 compliance and certification process across both departments.", profiles: ['manager', 'architect'], priority: 3 },
-        { title: "Resilient Team Building", description: "Fosters and grows healthy internal teams where people feel safe and develop individually and as a team — transforming external-heavy engineering into resilient in-house capability.", profiles: ['manager'], priority: 4 }
+        { title: "Operational Efficiency", description: "Sustained the entire physical and cloud product portfolio through a corporate restructuring that downsized the team from 17 to 5 FTEs (70% reduction) by standardizing lean processes and AI-assisted execution.", profiles: ['manager', 'embedded-eng-manager'], priority: 1 },
+        { title: "Agentic SDLC Strategy", description: "Spearheaded organizational adoption of Agentic Development. Standardized unified frameworks—including AGENTS.md, DESIGN.md, custom Model Context Protocol (MCP) servers, and Agent-to-Agent (A2A) interfaces—optimizing engineering workflows for context engineering to successfully close the automated loop.", profiles: ['manager', 'embedded-eng-manager', 'ai-dev', 'architect'], industries: ['ai'], priority: 1 },
+        { title: "Strategic Convergence", description: "Unified firmware and cloud departments to merge physical hardware and SaaS platforms into a seamless cyber-physical loop.", profiles: ['manager', 'embedded-eng-manager', 'architect'], industries: ['firmware-embedded', 'cloud-saas'], priority: 2 },
+        { title: "Governance & Security", description: "Spearheaded the ISO 27001 compliance and certification process across both teams.", profiles: ['manager', 'embedded-eng-manager', 'architect'], priority: 3 },
+        { title: "Resilient Team Building", description: "Fosters and grows healthy internal teams where people feel safe and develop individually and as a team — transforming external-heavy engineering into resilient in-house capability.", profiles: ['manager', 'embedded-eng-manager'], priority: 4 }
       ],
       engineeringHighlights: [
-        { title: "Hands-on Multi-Domain Coding", description: "Function as an active player-coach across the Firmware, Desktop, and Cloud boundaries, directly committing high-performance C++ and Python code, performance optimizations, and DevOps CI/CD pipelines.", profiles: ['senior-dev', 'manager'], priority: 1 },
-        { title: "Agentic-Ready Architecture", description: "Re-architected codebases and testing systems with modular design patterns that enable autonomous AI agents to interact directly with low-level physical and logical interfaces (Oscilloscopes, J-Link debug probes, system-level D-Bus, and headless browsers) for closed-loop, automated HIL testing.", profiles: ['architect', 'ai-dev', 'senior-dev'], industries: ['ai', 'firmware-embedded'], priority: 1 },
+        { title: "Agentic Hands-On Delivery", description: "Operate as an active player-coach across the Firmware, Desktop, and Cloud boundaries by building and running a full agentic development stack — personally shipping features, bug fixes, security fixes, performance optimizations and DevOps CI/CD pipelines in C++ and Python, and porting complete brownfield repositories to newer language standards.", profiles: ['senior-dev', 'manager', 'embedded-eng-manager'], priority: 1 },
+        { title: "Agentic-Ready Architecture", description: "Re-architected codebases and testing systems with modular design patterns that enable autonomous AI agents to interact directly with low-level physical and logical interfaces (Oscilloscopes, J-Link debug probes, system-level D-Bus, and headless browsers) for closed-loop, automated HIL testing.", profiles: ['architect', 'ai-dev', 'senior-dev', 'embedded-eng-manager'], industries: ['ai', 'firmware-embedded'], priority: 1 },
         { title: "AI Translation Agent", description: "Developed a GraphRAG and LLM-powered translation agent in CI/CD, saving roughly €22k annually in external localization services.", profiles: ['ai-dev', 'senior-dev'], industries: ['ai'], priority: 2 }
       ],
       techStack: ["Firmware", "Cloud", "Desktop", "C++", "Python", "Agentic Workflows", "Context Engineering", "HIL Testing", "MCP", "A2A", "J-Link", "D-Bus", "Oscilloscope", "ISO 27001", "Neo4j", "DevOps"]
@@ -67,7 +67,7 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Geldermalsen, Netherlands",
       period: "March 2025 – June 2025",
-      profiles: ['manager', 'architect', 'ai-dev'],
+      profiles: ['manager', 'embedded-eng-manager', 'architect', 'ai-dev'],
       industries: ['cloud-saas', 'ai', 'manufacturing'],
       priority: 2,
       responsibility: "Managed a 10-FTE team of Cloud Developers, QA, UX, DevOps, and Architects, reporting directly to the CTO. Unified complex system integrations and optimized team throughput.",
@@ -77,10 +77,10 @@ export const cvData: CVData = {
         }
       },
       leadershipHighlights: [
-        { title: "Executive Crisis Resolution", description: "Defused a critical GCP billing conflict representing a €1M+ financial risk: partnered with DevOps on a mitigation strategy and successfully executed the migration after presenting it to the CEO and CTO.", profiles: ['manager', 'architect'], industries: ['cloud-saas'], priority: 1 },
-        { title: "Operational Cost Optimization", description: "Slashed external consulting overhead by €39k/month by strategically insourcing external cloud development and establishing an agile in-house cloud engineering capability.", profiles: ['manager'], priority: 1 },
-        { title: "Merger Integration", description: "Orchestrated post-merger decoupling of MakerBot and UltiMaker systems while maintaining 100% production uptime.", profiles: ['manager', 'architect'], priority: 2 },
-        { title: "Vendor Management", description: "Managed contract negotiations with external partners to prepare the organization for the strategic insourcing initiatives.", profiles: ['manager'], priority: 3 }
+        { title: "Executive Crisis Resolution", description: "Defused a critical GCP billing conflict representing a €1M+ financial risk: partnered with DevOps on a mitigation strategy and successfully executed the migration after presenting it to the CEO and CTO.", profiles: ['manager', 'embedded-eng-manager', 'architect'], industries: ['cloud-saas'], priority: 1 },
+        { title: "Operational Cost Optimization", description: "Slashed external consulting overhead by €39k/month by strategically insourcing external cloud development and establishing an agile in-house cloud engineering capability.", profiles: ['manager', 'embedded-eng-manager'], priority: 1 },
+        { title: "Merger Integration", description: "Orchestrated post-merger decoupling of MakerBot and UltiMaker systems while maintaining 100% production uptime.", profiles: ['manager', 'embedded-eng-manager', 'architect'], priority: 2 },
+        { title: "Vendor Management", description: "Managed contract negotiations with external partners to prepare the organization for the strategic insourcing initiatives.", profiles: ['manager', 'embedded-eng-manager'], priority: 3 }
       ],
       engineeringHighlights: [
         { title: "AI-Driven Cloud", description: "Pioneered integration of LLM agents (UltiBot) and Neo4j Knowledge Graphs into cloud stacks via Model Context Protocols.", profiles: ['ai-dev', 'architect'], industries: ['ai', 'cloud-saas'], priority: 1 },
@@ -94,13 +94,13 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Geldermalsen, Netherlands",
       period: "January 2024 – March 2025",
-      profiles: ['manager', 'senior-dev', 'architect'],
+      profiles: ['manager', 'embedded-eng-manager', 'senior-dev', 'architect'],
       industries: ['cloud-saas', 'manufacturing'],
       priority: 3,
       responsibility: "Led a 5-FTE team overseeing Cura Desktop and Cura Cloud software development. Spearheaded strategic agile transformations and key feature alignment.",
       leadershipHighlights: [
-        { title: "Strategic Insourcing", description: "Built a high-performing Netherlands engineering team by insourcing critical product capabilities from the US.", profiles: ['manager'], priority: 1 },
-        { title: "Risk Mitigation", description: "De-risked and unblocked major product launches by resolving high-exposure open-source licensing and compliance issues (OpenSSL, Qt libraries).", profiles: ['manager', 'architect'], priority: 2 }
+        { title: "Strategic Insourcing", description: "Built a high-performing Netherlands engineering team by insourcing critical product capabilities from the US.", profiles: ['manager', 'embedded-eng-manager'], priority: 1 },
+        { title: "Risk Mitigation", description: "De-risked and unblocked major product launches by resolving high-exposure open-source licensing and compliance issues (OpenSSL, Qt libraries).", profiles: ['manager', 'embedded-eng-manager', 'architect'], priority: 2 }
       ],
       engineeringHighlights: [
         { title: "Serverless WASM Compilation", description: "Co-authored compiling the core C++ slicer engine to WebAssembly, eliminating backend cloud GPU dependencies and saving €1.5M in annual infrastructure costs.", priority: 1 }
@@ -113,16 +113,16 @@ export const cvData: CVData = {
       website: "https://ultimaker.com/",
       location: "Geldermalsen, Netherlands",
       period: "April 2020 – March 2025",
-      profiles: ['senior-dev', 'architect', 'ai-dev'],
+      profiles: ['senior-dev', 'architect', 'ai-dev', 'embedded-eng-manager'],
       industries: ['manufacturing', 'cloud-saas'],
       priority: 4,
       responsibility: "Served as a core developer for UltiMaker Cura, driving 15 million monthly 3D slices through heavy-duty system algorithms, data structures, and mathematical optimizations under high pressure.",
       engineeringHighlights: [
-        { title: "C++20 Engine Modernization", description: "Modernized the core slicing engine (CuraEngine) from C++14 to C++20/23, introducing ranges, concepts, template metaprogramming, and architecting a decoupled gRPC/Protobuf-based plugin system to run proprietary slicing strategies alongside the AGPL core.", profiles: ['senior-dev', 'architect'], priority: 1 },
-        { title: "Cloud Slicing (WASM)", description: "Pioneered browser-based 3D slicing by compiling the core C++ slicing algorithms to WebAssembly, matching native desktop performance and 3D visualization requirements.", profiles: ['senior-dev', 'architect'], industries: ['cloud-saas', 'manufacturing'], priority: 2 },
+        { title: "C++20 Engine Modernization", description: "Modernized the core slicing engine (CuraEngine) from C++14 to C++20/23, introducing ranges, concepts, template metaprogramming, and architecting a decoupled gRPC/Protobuf-based plugin system to run proprietary slicing strategies alongside the AGPL core.", profiles: ['senior-dev', 'architect', 'embedded-eng-manager'], priority: 1 },
+        { title: "Cloud Slicing (WASM)", description: "Pioneered browser-based 3D slicing by compiling the core C++ slicing algorithms to WebAssembly, matching native desktop performance and 3D visualization requirements.", profiles: ['senior-dev', 'architect', 'embedded-eng-manager'], industries: ['cloud-saas', 'manufacturing'], priority: 2 },
         { title: "ParaView Visual Debugger", description: "Developed the custom C++20 'scripta' visual debugger utilizing CRTP and ranges to serialize internal geometric stages as VTU files, enabling developers and engineers to visualize spatial and geometry edge cases in ParaView.", profiles: ['senior-dev'], priority: 4 },
         { title: "CAD Interoperability & Security", description: "Integrated Dassault Systèmes Spatial CGM SDK (UMSpatial) for enterprise CAD file parsing and implemented RSA-based licensing security schemes.", profiles: ['senior-dev', 'architect'], priority: 5 },
-        { title: "Operational Excellence", description: "Revamped the entire build system using Conan and GitHub Actions, slashing developer setup from 1 day to 15 minutes and reducing annual infrastructure overhead by €36k/year.", profiles: ['senior-dev', 'manager'], priority: 3 }
+        { title: "Operational Excellence", description: "Revamped the entire build system using Conan and GitHub Actions, slashing developer setup from 1 day to 15 minutes and reducing annual infrastructure overhead by €36k/year.", profiles: ['senior-dev', 'manager', 'embedded-eng-manager'], priority: 3 }
       ],
       techStack: ["C++20", "C++23", "Python", "WebAssembly", "gRPC", "Protobuf", "Conan", "GitHub Actions", "Docker", "Spatial CGM SDK", "Qt", "Linux"]
     },
@@ -167,16 +167,16 @@ export const cvData: CVData = {
       website: "https://www.royalihc.com/",
       location: "Delft, Netherlands",
       period: "April 2016 – September 2017",
-      profiles: ['senior-dev', 'ai-dev'],
+      profiles: ['senior-dev', 'ai-dev', 'embedded-eng-manager'],
       industries: ['maritime', 'firmware-embedded', 'ai', 'royal-ihc'],
       anchor: true,
       responsibility: "Conducted core software development, robotics, and hardware-software research within Royal IHC's central R&D institute.",
       engineeringHighlights: [
         { title: "Soil Machine Vision Microscope", description: "Independently designed and developed an automated soil analysis microscope backed by an 8,000-line C++ codebase. Implemented advanced image processing (Fast Fourier Transforms, OpenCV) and neural network algorithms (ANN, GA) to classify sand sample shape and grain angularity. Featured in 'Kompas' magazine.", profiles: ['senior-dev', 'ai-dev'], priority: 1 },
-        { title: "AUV Autonomy Framework", description: "Authored a real-time C++ control framework for rapid prototyping and deployment of autonomous underwater vehicles (AUVs) on embedded Linux and RTOS.", profiles: ['senior-dev', 'architect'], industries: ['maritime', 'firmware-embedded'], priority: 2 },
+        { title: "AUV Autonomy Framework", description: "Authored a real-time C++ control framework for rapid prototyping and deployment of autonomous underwater vehicles (AUVs) on embedded Linux and RTOS.", profiles: ['senior-dev', 'architect', 'embedded-eng-manager'], industries: ['maritime', 'firmware-embedded'], priority: 2 },
         { title: "Scientific Python Library", description: "Collaborated to create 'MTIpython', an internal Python library for advanced engineering calculations, unit-safe physical computations, and LaTeX-generated reports.", profiles: ['senior-dev'], priority: 3 },
         { title: "Test Controller Design", description: "Designed and implemented a real-time C++ test controller and data acquisition script for a slurry-based geopolymer test plant.", profiles: ['senior-dev'], priority: 4 },
-        { title: "Collaboration Standards", description: "Set up and administered the first local secure GitLab server for the R&D department, establishing modern Git version control, branch rules, and peer reviews.", profiles: ['manager', 'senior-dev'], priority: 5 }
+        { title: "Collaboration Standards", description: "Set up and administered the first local secure GitLab server for the R&D department, establishing modern Git version control, branch rules, and peer reviews.", profiles: ['manager', 'embedded-eng-manager', 'senior-dev'], priority: 5 }
       ],
       techStack: ["C++", "Python", "OpenCV", "Embedded Linux", "RTOS", "Neural Networks (ANN)", "Fast Fourier Transforms (FFT)", "GitLab", "Siemens NX CAD", "Mathematical Modeling"]
     },
@@ -287,7 +287,7 @@ export const cvData: CVData = {
       school: "HAN University of Applied Sciences",
       website: "https://www.han.nl/",
       year: "2014 – 2015",
-      profiles: ['senior-dev', 'ai-dev'],
+      profiles: ['senior-dev', 'ai-dev', 'embedded-eng-manager'],
       industries: ['firmware-embedded', 'ai', 'maritime'],
       priority: 2,
       details: [
@@ -302,7 +302,7 @@ export const cvData: CVData = {
       degree: "Middle Management Engineering (MTS+ 4)",
       school: "ROC van Amsterdam",
       year: "2009 – 2011",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       industries: ['manufacturing'],
       priority: 3,
       details: [
@@ -351,7 +351,7 @@ export const cvData: CVData = {
       issuer: "iSAQB® – International Software Architecture Qualification Board",
       date: "Nov 2022",
       credentialId: "2202-CPSAFL-0548-EN",
-      profiles: ['architect', 'manager', 'senior-dev'],
+      profiles: ['architect', 'manager', 'embedded-eng-manager', 'senior-dev'],
       priority: 1,
       details: [
         "Design Principles: Mastered cohesion, loose coupling, SOLID, and patterns (Microservices, CQRS, Layered, Hexagonal).",
@@ -365,7 +365,7 @@ export const cvData: CVData = {
       name: "Maatwerk training voor de OR",
       issuer: "Academy4-OR",
       date: "Dec 2022",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 5
     },
     {
@@ -385,7 +385,7 @@ export const cvData: CVData = {
       name: "Effective communication skills for technical professionals",
       issuer: "High Tech Institute (HTI) B.V.",
       date: "Oct 2020",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 3
     },
     {
@@ -423,7 +423,7 @@ export const cvData: CVData = {
       name: "Project management for Innovators (PRINCE2)",
       issuer: "Royal IHC",
       date: "Apr 2016",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 4
     },
     {
@@ -449,7 +449,7 @@ export const cvData: CVData = {
     {
       name: "Leadership for Engineers (LfE101x)",
       issuer: "DelftX | edX",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 4
     },
     {
@@ -532,7 +532,7 @@ export const cvData: CVData = {
       role: "Works Council Secretary",
       organization: "UltiMaker",
       period: "2022 – 2024",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 1,
       description: "Represented employee interests and advised executive management on strategic decisions during a critical international merger and organizational restructuring."
     },
@@ -540,7 +540,7 @@ export const cvData: CVData = {
       role: "Professional Field Committee Member",
       organization: "HAN University of Applied Sciences",
       period: "2020 – Present",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 2,
       description: "Regularly advise and consult on the Mechanical Engineering and Embedded Systems Engineering curricula to align course topics with modern industrial software and automation needs."
     },
@@ -548,7 +548,7 @@ export const cvData: CVData = {
       role: "Home Automation Developer",
       organization: "Home Assistant Community",
       period: "Ongoing",
-      profiles: ['senior-dev', 'ai-dev'],
+      profiles: ['senior-dev', 'ai-dev', 'embedded-eng-manager'],
       industries: ['firmware-embedded'],
       priority: 3,
       description: "Author and maintainer of the HACS UltiMaker smart home connection integration. Developing open-source Python hooks and automations."
@@ -557,7 +557,7 @@ export const cvData: CVData = {
       role: "Conan Package Contributor",
       organization: "JFrog - Conan Center",
       period: "Ongoing",
-      profiles: ['senior-dev'],
+      profiles: ['senior-dev', 'embedded-eng-manager'],
       priority: 2,
       description: "Contributed C++ library recipes to the global Conan Package Manager index, improving Linux/ARM multi-platform build compliance."
     },
@@ -565,7 +565,7 @@ export const cvData: CVData = {
       role: "Emergency Response & First Aid Officer (BHV)",
       organization: "UltiMaker · Royal IHC · Nedal Aluminium",
       period: "2008 – 2024",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 4,
       description: "Sixteen years of voluntary in-house emergency response and first-aid (BHV) service across three employers — from member to foreman in charge of the emergency and first-aid supplies at Nedal Aluminium."
     }
@@ -575,7 +575,7 @@ export const cvData: CVData = {
       name: "ultiagents",
       role: "Creator",
       description: "An agentic development swarm taking features from idea to production-ready code through clearly staged phases: Prompt-Driven Design (PDD), Standard Operating Procedures (SOPs), security-by-design, and human-like validation & verification — orchestrating Gemini, OpenAI, and Claude agents.",
-      profiles: ['ai-dev', 'architect', 'manager'],
+      profiles: ['ai-dev', 'architect', 'manager', 'embedded-eng-manager'],
       industries: ['ai'],
       priority: 1,
       tech: ["AI Agents", "Prompt-Driven Design (PDD)", "SOPs", "Gemini", "OpenAI", "Claude", "Security-by-Design"]
@@ -643,7 +643,7 @@ export const cvData: CVData = {
       role: "Product Lead",
       description: "Led development of Neoprep, the cloud slicer based on Cura and CuraEngine: a serverless 3D slicing engine processing 100k slices/month in-browser via high-performance WebAssembly, eliminating backend GPU infrastructure dependencies.",
       link: "https://neoprep.staging.ultimaker.com/",
-      profiles: ['architect', 'manager', 'senior-dev'],
+      profiles: ['architect', 'manager', 'embedded-eng-manager', 'senior-dev'],
       industries: ['cloud-saas', 'manufacturing'],
       priority: 1,
       tech: ["WASM", "ThreeJS", "C++"]
@@ -670,7 +670,7 @@ export const cvData: CVData = {
       name: "printer-linter",
       role: "Creator",
       description: "An automated linting and code-review bot for Cura printer definitions that posts comments and fix suggestions on community pull requests — responsible for a 300% increase in printers added to the following Cura release.",
-      profiles: ['senior-dev', 'ai-dev', 'manager'],
+      profiles: ['senior-dev', 'ai-dev', 'manager', 'embedded-eng-manager'],
       industries: ['manufacturing'],
       priority: 5,
       tech: ["Python", "Automated Code Review", "GitHub Actions", "Open Source"]
@@ -728,7 +728,7 @@ export const cvData: CVData = {
       role: "Engineering Manager",
       description: "Built the cloud fleet-management platform handling 200k visits/month, enabling secure remote printing, cloud queue scheduling, and telemetry analytics for thousands of 3D printers.",
       link: "https://ultimaker.com/software/ultimaker-digital-factory/",
-      profiles: ['manager', 'architect'],
+      profiles: ['manager', 'embedded-eng-manager', 'architect'],
       industries: ['cloud-saas'],
       priority: 2,
       tech: ["SaaS", "GCP", "React"]
@@ -737,7 +737,7 @@ export const cvData: CVData = {
       name: "AI-In-Action",
       role: "Founder",
       description: "Spearheaded a company-wide generative AI adoption initiative, running monthly showcases that scaled AI-assisted workflows across multi-disciplinary departments.",
-      profiles: ['manager', 'ai-dev'],
+      profiles: ['manager', 'embedded-eng-manager', 'ai-dev'],
       industries: ['ai'],
       priority: 3,
       tech: ["AI Agents", "LLMs", "Culture"]
@@ -756,7 +756,7 @@ export const cvData: CVData = {
     {
       name: "UltiCortex (Agentic SDLC Core)",
       description: "Architected a centralized skill registry bridging domain expertise with AI developer tooling. Designed a CLI pipeline deploying sandboxed guidelines (.skills/) to align GitHub Copilot and Cursor engines with hardware testing and C++ standards.",
-      profiles: ['architect', 'ai-dev', 'manager'],
+      profiles: ['architect', 'ai-dev', 'manager', 'embedded-eng-manager'],
       industries: ['ai'],
       priority: 1,
       tech: ["CLI Systems", "GitHub Packages", "Context Engineering", "copilot-instructions", "NodeJS"]
@@ -792,7 +792,7 @@ export const cvData: CVData = {
       title: "IT Manager at UltiMaker",
       date: "May 13, 2026",
       relationship: "Michiel worked with Jelle but on different teams",
-      profiles: ['manager'],
+      profiles: ['manager', 'embedded-eng-manager'],
       priority: 1,
       text: "Jelle is a one of a kind guy, there’s no better way to put it. I’ve had the pleasure of working with him in multiple roles, him as a developer while I was a Product Owner - and now both as managers in our respective departments. And let’s not forget our tenure together on the Works Council. His ability to balance employee interests with organizational goals during our time on the Works Council showed a level of maturity and strategic thinking that he now seamlessly applies in his managerial role. In all this time I have gotten to know Jelle as one of the most driven people I have ever seen. The man is possessed with boundless energy for creativity, thinking outside the box, problem solving and people.\n\nDid I mention people? Because his love for the people he works with is what sets him apart. Jelle is extremely adept at navigating corporate culture and does so with a smile, charm and disarming personality. But don’t let that fool you, Jelle is very keen, observing and skilled at figuring out how to move and encourage people. I see him constantly drive to get the best out of those around him, not just his direct reports, but everyone. It’s a masterclass to witness.\n\nI wish I had a manager like Jelle. I’d feel encouraged to give it my best every day. Luckily I get to work alongside him constantly as we tackle complex questions on infrastructure, optimizations, code and various other projects. He doesn't just manage from a distance; his technical grasp on infrastructure and code optimizations ensures that the solutions we build are not only human-centric but technically robust. Any organization would be lucky to have Jelle at the helm; he is the kind of leader who doesn't just manage a team, but builds a legacy.",
       linkedin: "https://www.linkedin.com/in/michielvanrooijen/"
@@ -802,7 +802,7 @@ export const cvData: CVData = {
       title: "Software Developer bij Ultimaker",
       date: "May 10, 2026",
       relationship: "Casper worked with Jelle but on different teams",
-      profiles: ['manager', 'ai-dev', 'architect'],
+      profiles: ['manager', 'embedded-eng-manager', 'ai-dev', 'architect'],
       priority: 2,
       text: "I’ve had the pleasure of seeing Jelle evolve from a Software Engineer into a truly versatile leader. What makes Jelle unique is his ability to bridge the gap between deeply technical domains—like Firmware and Cloud—while never losing sight of the human element.\n\nJelle is a rare \"people-first\" manager who remains fiercely business-oriented. What is most impressive is his ability to drive meaningful, systematic change across the organization. He does this by involving diverse teams and ensuring solutions are larger than any one individual, he creates a culture of genuine buy-in. His work spearheading our AI adoption—providing not just the tools, but the education and community (colloquia) to support them—is a perfect testament to his vision.",
       linkedin: "https://www.linkedin.com/in/casper-lamboo-250b54242/"

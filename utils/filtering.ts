@@ -274,6 +274,7 @@ export const deriveCV = (data: CVData, state: FilterState): DerivedCV => {
  *   ?maritime                      → maritime industry
  *   ?architect                     → Software Architect profile
  *   ?ai-dev&ai&cloud-saas          → profile + two industries
+ *   ?embedded-eng-manager          → Embedded / Cyber-Physical Engineering Manager
  * Friendly aliases (?cloud, ?firmware, ?manager, ?dev, …) and the legacy long
  * form (?profile=architect&industries=ai,cloud-saas) are accepted as well. */
 
@@ -283,6 +284,8 @@ const PROFILE_ALIASES: Record<string, FunctionProfileId> = {
   'manager': 'manager', 'engineering-manager': 'manager', 'edm': 'manager', 'em': 'manager',
   'senior-dev': 'senior-dev', 'senior-developer': 'senior-dev', 'senior': 'senior-dev', 'dev': 'senior-dev', 'developer': 'senior-dev', 'cpp': 'senior-dev',
   'ai-dev': 'ai-dev', 'ai-developer': 'ai-dev', 'aidev': 'ai-dev', 'ml': 'ai-dev',
+  'embedded-eng-manager': 'embedded-eng-manager', 'embedded-manager': 'embedded-eng-manager',
+  'cyber-physical': 'embedded-eng-manager', 'eem': 'embedded-eng-manager',
 };
 
 const INDUSTRY_ALIASES: Record<string, IndustryId> = {

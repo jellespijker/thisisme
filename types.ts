@@ -2,7 +2,8 @@
  * Function profiles a reader can filter the CV on.
  * 'all' shows the complete, unfiltered CV.
  */
-export type FunctionProfileId = 'all' | 'architect' | 'manager' | 'senior-dev' | 'ai-dev';
+export type FunctionProfileId =
+  | 'all' | 'architect' | 'manager' | 'embedded-eng-manager' | 'senior-dev' | 'ai-dev';
 
 /**
  * Industry domains a reader can filter the CV on.
